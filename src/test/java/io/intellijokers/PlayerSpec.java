@@ -21,7 +21,7 @@ public class PlayerSpec {
 
     @Test
     public void setGetCashTest(){
-        player.setCash(ammount);
+        //player.setCash(ammount);
         double actualCash = player.getCash();
         assertEquals("the ammount passed should have been set and returned by a getter and setter", ammount,actualCash, err);
     }

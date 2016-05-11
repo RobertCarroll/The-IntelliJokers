@@ -19,29 +19,18 @@ public class GameSpec {
 
 
     @Test
-    public void getStagesTest() {
+    public void getAmountBetTest() {
         int expectedValue = 9;
-        int actualValue = game.getStage();
-        assertEquals("Should output 9", expectedValue, actualValue);
+        int actualValue = game.getAmountBet();
+        assertEquals("Should output 0", expectedValue, actualValue);
     }
 
     @Test
-    public void setStagesTest() {
-        game.setStage(5);
-        assertTrue("Stages should be set to 5", game.getStage() == 5);
+    public void getRound() {
+        int expectedValue = 9;
+        int actualValue = game.getRound();
+        assertEquals("Should output 0", expectedValue, actualValue);
     }
 
-    @Test
-    public void betTest() {
-        int expectedValue= 100;
-        int actualValue = game.bet(100);
-        assertEquals("Should output 100", expectedValue, actualValue);
-    }
 
-    @Test
-    public void payoutTest() {
-        int expectedValue = 100;
-        int actualValue= game.payout(100);
-        assertEquals("Should output 100", expectedValue, actualValue);
-    }
 }
