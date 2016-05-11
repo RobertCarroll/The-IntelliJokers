@@ -3,11 +3,17 @@ package io.intellijokers;
 public class Horse {
     private String name;
     private int maxSpeed;
+    private int odds;
     private int distanceCovered;
 
     public Horse(int number){
         name = HorseNameGenerator.generateName();
         maxSpeed = (int)( Math.random() * number + 1 );
+        odds = 20 - maxSpeed;
+    }
+
+    public int getOdds(){
+        return odds;
     }
 
     public void setDistanceCovered(int distanceCovered){

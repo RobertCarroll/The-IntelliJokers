@@ -13,7 +13,7 @@ public class HorseRace {
 
     public void loadHorses(){
         for(int i = 0; i < 10; i++){
-            horses[i] = new Horse((int)(Math.random()*20+10));
+            horses[i] = new Horse((int)(Math.random()*(20-10) + 10));
         }
 
         leadHorse = horses[0];
@@ -34,11 +34,12 @@ public class HorseRace {
     public void displayWinningHorses(){
         getPositions();
         System.out.println("1st: " + horses[9].getName() + "\n2nd: " + horses[8].getName() + "\n3rd: " + horses[7].getName());
+        System.out.println("1st Odds: " + horses[9].getOdds() + "\n2nd Odds: " + horses[8].getOdds() + "\n3rd Odds: " + horses[7].getOdds());
     }
 
     public void delayProgram(){
         try {
-            Thread.sleep(6000);
+            Thread.sleep(1000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -78,8 +79,11 @@ public class HorseRace {
         completeRaceLeg();
     }
 
+    /**
     public static void main(String[] args) {
         HorseRace race = new HorseRace();
         race.startRace();
     }
+     */
+
 }
