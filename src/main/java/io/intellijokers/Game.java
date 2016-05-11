@@ -5,26 +5,16 @@ import java.util.ArrayList;
 public class Game {
 
     //Change String in ArrayList to Player
-    ArrayList<String> currentPlayers = new ArrayList<String>();
+    public ArrayList<String> currentPlayers = new ArrayList<String>();
+    
+    private int stage = 0;
 
-    private int cpu = 0;
-
-    public int getCpu() {
-        return cpu;
+    public int getStage() {
+        return stage;
     }
 
-    public void setCpu(int cpu) {
-        this.cpu = cpu;
-    }
-
-    private int stages = 0;
-
-    public int getStages() {
-        return stages;
-    }
-
-    public void setStages(int stages) {
-        this.stages = stages;
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 
     public void setCurrentPlayers(String name) {
@@ -35,8 +25,12 @@ public class Game {
         return wager;
     }
 
-    public int payout(int pot) {
-        return pot;
+    public double payout(int odds, User player) {
+        return 0;
+    }
+
+    public double payout(User player) {
+        return 0;
     }
 
     //Add abstract when you get the chance

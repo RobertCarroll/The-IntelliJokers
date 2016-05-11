@@ -14,30 +14,18 @@ public class GameSpec {
         game = new Game();
     }
 
-    @Test
-    public void getCPUTest() {
-        int expectedValue = 0;
-        int actualValue = game.getCpu();
-        assertEquals("Should output 9", expectedValue, actualValue);
-    }
-
-    @Test
-    public void setCpuTest() {
-        game.setCpu(3);
-        assertTrue("CPU should be set to 3", game.getCpu() == 3);
-    }
 
     @Test
     public void getStagesTest() {
         int expectedValue = 9;
-        int actualValue = game.getStages();
+        int actualValue = game.getStage();
         assertEquals("Should output 9", expectedValue, actualValue);
     }
 
     @Test
     public void setStagesTest() {
-        game.setStages(5);
-        assertTrue("Stages should be set to 5", game.getStages() == 5);
+        game.setStage(5);
+        assertTrue("Stages should be set to 5", game.getStage() == 5);
     }
 
     @Test
