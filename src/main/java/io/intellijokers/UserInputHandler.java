@@ -8,7 +8,6 @@ public class UserInputHandler {
 
     public void promptTheUserForAString(String msg) {
         promptUser(msg);
-        return 
     }
 
     public void promptUser(String msg) {

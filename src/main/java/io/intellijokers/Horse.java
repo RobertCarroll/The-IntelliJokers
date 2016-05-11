@@ -3,13 +3,10 @@ package io.intellijokers;
 public class Horse {
     private String name;
     private int maxSpeed;
-    private int odds;
     private int distanceCovered;
-    private static int nameCounter = 1;
 
     public Horse(int number){
-        name = "Blawr! Blawr!" + nameCounter;
-        nameCounter++;
+        name = HorseNameGenerator.nameGenerator();
         maxSpeed = (int)( Math.random() * number + 1 );
     }
 

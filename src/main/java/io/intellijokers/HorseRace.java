@@ -94,7 +94,7 @@ public class HorseRace {
     }
 
     private void finish(){
-        while(leadHorse.getDistanceCovered() < 350){
+        while(horses[7].getDistanceCovered() < 350){
             for(Horse horse:horses){
                 horse.ride();
                 checkLead();
