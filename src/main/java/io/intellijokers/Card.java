@@ -11,8 +11,12 @@ public class Card {
     int blackjackValue;
     String display;
 
-    public Card(){};
-    public Card(int thisRank, Deck.Suits thisSuit, int thisBlackjackValue, String thisDisplay){
+    public Card() {
+    }
+
+    ;
+
+    public Card(int thisRank, Deck.Suits thisSuit, int thisBlackjackValue, String thisDisplay) {
         this.rank = thisRank;
         this.suit = thisSuit;
         this.blackjackValue = thisBlackjackValue;

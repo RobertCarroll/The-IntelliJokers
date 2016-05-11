@@ -11,7 +11,8 @@ public class Deck {
     public String[] cardFace = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
     public int[] cardBjValue = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 1};
     public int[] cardRank = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-    public enum Suits{
+
+    public enum Suits {
         SPADES, HEARTS, DIAMONDS, CLUBS
     }
 
@@ -21,8 +22,8 @@ public class Deck {
         int cardTotal = 0;
         Deck.Suits suit = null;
         for (int i = 0; i < Deck.Suits.values().length; i++) {
-            for(int j = 0; j < cardFace.length; j++){
-                switch(i){
+            for (int j = 0; j < cardFace.length; j++) {
+                switch (i) {
                     case 0:
                         suit = Deck.Suits.CLUBS;
                         break;
@@ -37,7 +38,7 @@ public class Deck {
                         break;
                 }
                 String sign = "";
-                switch (suit){
+                switch (suit) {
                     case CLUBS:
                         sign = "\u2663";
                         break;
@@ -58,9 +59,11 @@ public class Deck {
         }
         return deck;
     }
+
     public static void main(String[] args) {
         Deck deck = new Deck();
         ArrayList<Card> newDeck = deck.populateDeck();
         System.out.println(newDeck.size());
     }
 }
+
