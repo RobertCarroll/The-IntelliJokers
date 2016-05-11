@@ -64,4 +64,5 @@ public class Deck {
         ArrayList<Card> newDeck = deck.populateDeck();
         System.out.println(newDeck.size());
     }
+
 }
