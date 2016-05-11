@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class HorseRace {
     private Horse[] horses = new Horse[10];
-    private int raceLength = 120;
     private Horse leadHorse;
 
     public void checkLead(){
@@ -39,62 +38,15 @@ public class HorseRace {
 
     public void delayProgram(){
         try {
-            Thread.sleep(5000);
+            Thread.sleep(6000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
 
-    public void firstTurn(){
-        while(leadHorse.getDistanceCovered() < 100){
-            for(Horse horse:horses){
-                horse.ride();
-                checkLead();
-            }
-        }
 
-        displayCurrentLeaders("first turn");
-        delayProgram();
-    }
-
-    public void enterBackstretch(){
-        while(leadHorse.getDistanceCovered() < 125){
-            for(Horse horse:horses){
-                horse.ride();
-                checkLead();
-            }
-        }
-
-        displayCurrentLeaders("backstretch");
-        delayProgram();
-    }
-
-    public void secondTurn(){
-        while(leadHorse.getDistanceCovered() < 225){
-            for(Horse horse:horses){
-                horse.ride();
-                checkLead();
-            }
-        }
-
-        displayCurrentLeaders("second turn");
-        delayProgram();
-    }
-
-    public void enterHomestretch(){
-        while(leadHorse.getDistanceCovered() < 275){
-            for(Horse horse:horses){
-                horse.ride();
-                checkLead();
-            }
-        }
-
-        displayCurrentLeaders("homestretch");
-        delayProgram();
-    }
-
-    public void finish(){
-        while(horses[7].getDistanceCovered() < 350){
+    public void finishRace(){
+        while(horses[7].getDistanceCovered() < 525){
             for(Horse horse:horses){
                 horse.ride();
                 checkLead();
@@ -104,14 +56,26 @@ public class HorseRace {
         displayWinningHorses();
     }
 
+    public void completeRaceLeg(int distance, String leg){
+        while(leadHorse.getDistanceCovered() < distance){
+            for(Horse horse : horses){
+                horse.ride();
+                checkLead();
+            }
+        }
+
+        displayCurrentLeaders(leg);
+        delayProgram();
+    }
+
     public void startRace(){
         loadHorses();
 
-        firstTurn();
-        enterBackstretch();
-        secondTurn();
-        enterHomestretch();
-        finish();
+        completeRaceLeg(100, "first turn");
+        completeRaceLeg(150, "backstretch");
+        completeRaceLeg(350, "second turn");
+        completeRaceLeg(400, "homestretch");
+        finishRace();
     }
 
     public static void main(String[] args) {

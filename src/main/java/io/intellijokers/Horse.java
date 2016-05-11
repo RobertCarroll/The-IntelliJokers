@@ -26,6 +26,6 @@ public class Horse {
      * Unit testing random number generator?
      */
     public void ride(){
-        distanceCovered += (int) (Math.random()*maxSpeed+1);
+        distanceCovered += (int) (Math.random()*maxSpeed+5);
     }
 }
