@@ -1,23 +1,26 @@
 package io.intellijokers;
 
+import java.util.ArrayList;
+
 /**
  * Created by stevejaminson on 5/11/16.
  */
-public class Blackjack{
+public class Blackjack extends CardGame{
 
     private boolean ace;
     private int aceValue;
     private boolean bust;
 
 
-    public boolean hit(){
+    public boolean hit(ArrayList<Card> whoHits){
 
-        return false;
+        whoHits.add(nextCard);
+        return true;
     }
 
     public boolean stand(){
 
-        return false;
+        return true;
     }
 
     public boolean doubleDown(){
