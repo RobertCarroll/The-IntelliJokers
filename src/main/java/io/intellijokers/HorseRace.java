@@ -79,11 +79,4 @@ public class HorseRace {
         completeRaceLeg();
     }
 
-    /**
-    public static void main(String[] args) {
-        HorseRace race = new HorseRace();
-        race.startRace();
-    }
-     */
-
 }
