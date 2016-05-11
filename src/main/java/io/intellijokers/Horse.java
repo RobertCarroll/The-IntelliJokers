@@ -6,7 +6,7 @@ public class Horse {
     private int distanceCovered;
 
     public Horse(int number){
-        name = HorseNameGenerator.nameGenerator();
+        name = HorseNameGenerator.generateName();
         maxSpeed = (int)( Math.random() * number + 1 );
     }
 

@@ -45,7 +45,7 @@ public class HorseRace {
     }
 
 
-    public void finishRace(){
+    public void completeRaceLeg(){
         while(horses[7].getDistanceCovered() < 525){
             for(Horse horse:horses){
                 horse.ride();
@@ -75,7 +75,7 @@ public class HorseRace {
         completeRaceLeg(150, "backstretch");
         completeRaceLeg(350, "second turn");
         completeRaceLeg(400, "homestretch");
-        finishRace();
+        completeRaceLeg();
     }
 
     public static void main(String[] args) {
