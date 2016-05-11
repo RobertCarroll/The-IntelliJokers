@@ -7,11 +7,11 @@ package io.intellijokers;
 public class Card {
 
     int rank;
-    Deck.Suits suit;
+    Deck.Suits suit; //what does this dot notation mean?
     int blackjackValue;
     String display;
 
-    public Card(){};
+    public Card(){}; //is there ever a point where we would need a blank card object other than testing?
     public Card(int thisRank, Deck.Suits thisSuit, int thisBlackjackValue, String thisDisplay){
         this.rank = thisRank;
         this.suit = thisSuit;
@@ -20,4 +20,3 @@ public class Card {
     }
 
 }
-it
