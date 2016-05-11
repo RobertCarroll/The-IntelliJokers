@@ -11,24 +11,35 @@ import java.util.ArrayList;
 public class UserSpec {
 
     User user;
-
+    String name;
+    ArrayList<Card> hand;
     @Before
     public void Sandbox(){
-        user = new User();
+        name = "Randy Dandy";
+        user = new User(name);
+        hand = new ArrayList<Card>();
     }
     @Test
-    public void getHandTest(){
-
-        ArrayList<card> expectedHand =;//hand will go here
-
-        ArrayList<card> actualHand = ;  //hand will go here
-        assertEquals("the two hands should be the same", expectedHand, actualHand);
+    public void setGetHandTest(){
+        user.setHand(hand);
+        ArrayList<Card> actualHand = user.getHand();  //hand will go here
+        assertEquals("the two hands should be the same", hand, actualHand);
     }
 
     @Test
-    public void setHand(){
-        ArrayList<card> expectedHand = ; //hand will go here
-        user.setHand();
-        ArrayList>card> actualHand = user.getHand();
+    public void getName(){
+        String expectedName = name;
+        user.name = name;
+        String actualName = user.getName();
+        assertEquals("the name should be able to be retieved",expectedName,actualName);
     }
+
+    @Test
+    public void setName(){
+        String expectedString = name;
+        user.setName(expectedString);
+        String actualName = user.name;
+    }
+
+
 }
