@@ -5,19 +5,19 @@ package io.intellijokers;
  */
 public class Player extends User{
 
-    double cash;
+    int cash;
 
-    public double getCash() {
+    public int getCash() {
         return cash;
     }
 
-    public void setCash(double cash) {
+    public void setCash(int cash) {
         this.cash = cash;
     }
 
 
 
-    public Player(String name, double money){
+    public Player(String name, int money){
         super(name);
         this.setCash(money);
     }
