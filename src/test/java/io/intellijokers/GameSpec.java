@@ -14,7 +14,7 @@ public class GameSpec {
 
     Game game;
     @Before public void setupInitializer() {
-        game = new Game();
+        //game = new Game();
     }
 
 

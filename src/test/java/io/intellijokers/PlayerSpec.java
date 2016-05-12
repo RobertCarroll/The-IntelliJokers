@@ -10,7 +10,7 @@ public class PlayerSpec {
 
     Player player;
     String name;
-    double ammount;
+    int ammount;
     double err;
     @Before
     public void Sandbox(){

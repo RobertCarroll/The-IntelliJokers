@@ -77,17 +77,5 @@ abstract class Game {
         player.setCash( player.getCash() + earnings);
     }
 
-    /**
-     * Used primarily by Poker to move the contents of the Pot to the
-     * winner's cash field.
-     * @param player
-     * @return
-     */
-    public void payout(Player player) {
-        //int currentPot= pot;
-        //resetPot();
-        //player.setCash(currentPot);
-    }
-
     public abstract void determineWinner();
 }
