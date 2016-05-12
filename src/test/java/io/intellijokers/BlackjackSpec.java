@@ -1,5 +1,8 @@
 package io.intellijokers;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -8,11 +11,23 @@ import static org.junit.Assert.*;
  */
 public class BlackjackSpec {
 
+    Blackjack blackjack;
+    Dealer dealer;
+    Player player;
+
+    @Before
+    public void initiate() {
+        blackjack = new Blackjack();
+        dealer = new Dealer();
+        player = new Player("Chester Tester", 500);
+    }
+
+
     @Test
     public void hitTest(){
-        Blackjack blackjack = new Blackjack();
-        boolean expected = true;
-        boolean actual = blackjack.hit();
+        blackjack.hit(dealer);
+        int expected = 2;
+        int actual = dealer.getHand().get(0).rank;
         assertEquals("Should return true if the user hits",expected,actual);
     }
 
@@ -20,7 +35,7 @@ public class BlackjackSpec {
     public void standTest(){
         Blackjack blackjack = new Blackjack();
         boolean expected = true;
-        boolean actual = blackjack.stand();
+        boolean actual = blackjack.stand(dealer);
         assertEquals("Should return true if the user stands",expected,actual);
     }
 
@@ -57,10 +72,20 @@ public class BlackjackSpec {
     }
 
     @Test
-    public void aceCheckTest(){
-        Blackjack blackjack = new Blackjack();
-        boolean expected = true;
-        boolean actual = blackjack.aceCheck();
-        assertEquals("Should return true if hand + 10 is not over 21",expected,actual);
+    public void isAceInHandTest(){
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        boolean expected = false;
+        boolean actual = blackjack.isAceInHand(player);
+        assertEquals("Should return false if no ace is in hand",expected,actual);
+    }
+
+    @Test
+    public void evaluateHandTest(){
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        int expected = 5;
+        int actual = blackjack.evaluateHand(player);
+        assertEquals("Hand total should be 5",expected,actual);
     }
 }
