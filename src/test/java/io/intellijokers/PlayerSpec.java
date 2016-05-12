@@ -10,19 +10,19 @@ public class PlayerSpec {
 
     Player player;
     String name;
-    double ammount;
+    int amount;
     double err;
     @Before
     public void Sandbox(){
-        ammount = 500;
+        amount = 500;
         err = .01;
-        player = new Player(name, ammount);
+        player = new Player(name, amount);
     }
 
     @Test
     public void setGetCashTest(){
-        player.setCash(ammount);
+        player.setCash(amount);
         double actualCash = player.getCash();
-        assertEquals("the ammount passed should have been set and returned by a getter and setter", ammount,actualCash, err);
+        assertEquals("the amount passed should have been set and returned by a getter and setter", amount,actualCash, err);
     }
 }

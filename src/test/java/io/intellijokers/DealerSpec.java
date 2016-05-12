@@ -13,13 +13,13 @@ public class DealerSpec {
     Player player;
 //    AI ai;
     String name;
-    double ammount;
+    int amount;
     @Before
     public void Sandbox(){
         name = "Dandy Randy";
         dealer = new Dealer();
         deck = new Deck();
-        player = new Player(name, ammount);
+        player = new Player(name, amount);
 //        ai = new AI();
     }
 

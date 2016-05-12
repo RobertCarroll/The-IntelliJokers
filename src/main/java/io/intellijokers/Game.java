@@ -25,11 +25,11 @@ public class Game {
         return wager;
     }
 
-    public double payout(int odds, User player) {
+    public int payout(int odds, User player) {
         return 0;
     }
 
-    public double payout(User player) {
+    public int payout(User player) {
         return 0;
     }
 

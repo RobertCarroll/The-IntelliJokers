@@ -10,14 +10,20 @@ import static org.junit.Assert.assertTrue;
 public class GameSpec {
 
     Game game;
+    Player player;
+    String name;
+    int money;
     @Before public void setupInitializer() {
         game = new Game();
+        name = "Ricky bobby";
+        money = 100;
+        player = new Player(name, money);
     }
 
 
     @Test
     public void getStagesTest() {
-        int expectedValue = 9;
+        int expectedValue = 0;
         int actualValue = game.getStage();
         assertEquals("Should output 9", expectedValue, actualValue);
     }
@@ -38,7 +44,7 @@ public class GameSpec {
     @Test
     public void payoutTest() {
         int expectedValue = 100;
-        int actualValue= game.payout(100);
+        int actualValue= game.payout(player);
         assertEquals("Should output 100", expectedValue, actualValue);
     }
 }
