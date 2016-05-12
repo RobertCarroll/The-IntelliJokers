@@ -10,6 +10,7 @@ public class Blackjack extends CardGame{
 
     Dealer dealer = new Dealer();
     Player player = new Player("Chester Tester", 500);
+    UserInputHandler prompt = new UserInputHandler();
 
 
     private int wager;
@@ -106,6 +107,47 @@ public class Blackjack extends CardGame{
                 card.blackjackValue = 11;
             }
         }
+    }
+
+
+
+    public void run(){
+        /**
+         * Deal initial cards to start the game.
+         */
+        player.getHand().add(dealer.dealCard()); //Face Up
+        dealer.getHand().add(dealer.dealCard()); //Face UP
+        player.getHand().add(dealer.dealCard()); //Face Up
+        dealer.getHand().add(dealer.dealCard()); //Face Down
+
+        int choice = prompt.promptTheUserForAnInteger("Your hand total is: "
+                + evaluateHand(player) + "\nChoose an option: \n" +
+                "1 : Hit\n" +
+                "2 : Stay\n" +
+                "3 : Double Down\n" +
+                "4 : Split");
+
+        switch (choice){
+            case 1 :
+                hit(player);
+                while(evaluateHand(player) < 21){
+                    
+                }
+                return;
+
+            case 2:
+                stand(player);
+                return;
+
+            case 3:
+                doubleDown();
+                return;
+
+            case 4:
+                split();
+                return;
+        }
+
     }
 
 }
