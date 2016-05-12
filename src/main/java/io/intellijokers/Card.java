@@ -5,16 +5,38 @@ package io.intellijokers;
  */
 public class Card {
 
-    int rank;
-    Deck.Suits suit; //what does this dot notation mean?
-    int blackjackValue;
-    String display;
+    private int rank;
+    private Suits suit; //what does this dot notation mean?
+    private Orientation orientation = Orientation.FACEDOWN;
+    public enum Orientation{FACEUP,FACEDOWN;}
+    public enum Suits{
+        SPADES("\u2660"),
+        HEARTS("\u2764"),
+        DIAMONDS("\u2666"),
+        CLUBS("\u2663");
+        String unicode;
+        //        constructor which is private access
+        Suits(String unicode){
+            this.unicode = unicode;
+        }
 
-    public Card(){}; //is there ever a point where we would need a blank card object other than testing?
-    public Card(int thisRank, Deck.Suits thisSuit, int thisBlackjackValue, String thisDisplay){
-        this.rank = thisRank;
-        this.suit = thisSuit;
-        this.blackjackValue = thisBlackjackValue;
-        this.display = thisDisplay;
+        public String getUnicode(){ return unicode}
     }
+
+    public Card(int thisRank, Suits suit){
+        this.rank = thisRank;
+        this.suit = suit;
+    }
+
+    public String getFace(){  //return royalty cards
+        return "";
+    }
+
+    public Orientation turnFaceUP(){
+        return null;
+    }
+
+
+    public
+
 }
