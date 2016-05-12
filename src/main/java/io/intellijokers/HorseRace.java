@@ -34,12 +34,11 @@ public class HorseRace {
     public void displayWinningHorses(){
         getPositions();
         System.out.println("1st: " + horses[9].getName() + "\n2nd: " + horses[8].getName() + "\n3rd: " + horses[7].getName());
-        System.out.println("1st Odds: " + horses[9].getOdds() + "\n2nd Odds: " + horses[8].getOdds() + "\n3rd Odds: " + horses[7].getOdds());
     }
 
     public void delayProgram(){
         try {
-            Thread.sleep(1000);
+            Thread.sleep(6000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }

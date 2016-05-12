@@ -9,7 +9,6 @@ public class Horse {
     public Horse(int number){
         name = HorseNameGenerator.generateName();
         maxSpeed = (int)( Math.random() * number + 1 );
-        odds = 20 - maxSpeed;
     }
 
     public int getOdds(){
