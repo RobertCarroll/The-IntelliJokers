@@ -122,7 +122,7 @@ public class Card {
 
     public int getBlackJackValue(){
         int blackJackRank;
-        if(rank > 10 && rank< 14) {
+        if(rank > 10) {
             blackJackRank = 10;
         }else {
             blackJackRank = rank;
