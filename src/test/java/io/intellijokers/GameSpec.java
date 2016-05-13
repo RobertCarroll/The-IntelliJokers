@@ -35,10 +35,10 @@ public class GameSpec {
         assertEquals("Should output 100", expectedValue, actualValue);
     }
 
-    @Test
-    public void payoutTest() {
-        int expectedValue = 100;
-        int actualValue= game.payout(100);
-        assertEquals("Should output 100", expectedValue, actualValue);
-    }
+//    @Test
+//    public void payoutTest() {
+//        int expectedValue = 100;
+//        int actualValue= game.payout(100);
+//        assertEquals("Should output 100", expectedValue, actualValue);
+//    }
 }
