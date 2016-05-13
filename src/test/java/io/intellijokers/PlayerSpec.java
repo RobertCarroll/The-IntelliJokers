@@ -16,6 +16,9 @@ public class PlayerSpec {
     int amount;
     double err;
     ArrayList<Integer> bets;
+
+
+
     @Before
     public void Sandbox(){
         amount = 500;
