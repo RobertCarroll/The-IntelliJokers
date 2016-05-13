@@ -1,6 +1,5 @@
 package io.intellijokers;
 
-import io.dimitrivaughn.Roulette;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

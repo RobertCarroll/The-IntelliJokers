@@ -7,14 +7,14 @@ import java.util.ArrayList;
  */
 public class Player extends User{
 
-    int cash = 0;
+    double cash = 0;
     ArrayList<Integer> bets;
 
-    public int getCash() {
+    public double getCash() {
         return cash;
     }
 
-    public void setCash(int cash) {
+    public void setCash(double cash) {
         this.cash = cash;
     }
 

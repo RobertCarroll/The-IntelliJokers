@@ -146,7 +146,7 @@ public class BlackjackSpec {
         player.getHand().add(dealer.dealCard());
         dealer.getHand().add(dealer.dealCard());
         dealer.getHand().add(dealer.dealCard());
-        String expected = "Current Bet : $0   Total Cash : $500\n\nDealer :   0\n\nChester Tester :   0\n";
+        String expected = "Current Bet : $0   Total Cash : $500.0\n\nDealer :   0\n\nChester Tester :   0\n";
         String actual = blackjack.displayScoreBoard();
         assertEquals(expected,actual);
     }
@@ -164,6 +164,15 @@ public class BlackjackSpec {
         int expected = 50;
         int actual = blackjack.getCurrentBet();
         assertEquals("Getter should match setter", expected, actual);
+    }
+
+    @Test
+    public void payoutTest(){
+        blackjack.setCurrentBet(50);
+        blackjack.payout(1,player);
+        int expected = 50;
+        int actual = blackjack.getCurrentBet();
+        assertEquals("Total should be $50 after win", expected, actual);
     }
 
 }

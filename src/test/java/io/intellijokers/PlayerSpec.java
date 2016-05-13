@@ -33,16 +33,16 @@ public class PlayerSpec {
 
     public void setGetCashTest() {
         player.setCash(amount);
-        int actualCash = player.getCash();
-        assertEquals("the amount passed should have been set and returned by a getter and setter", amount, actualCash);
+        double actualCash = player.getCash();
+        assertEquals("the amount passed should have been set and returned by a getter and setter", amount, actualCash, 0);
     }
 
     @Test
     public void placeBetTest() {
         player.placeBet(50);
-        int actualCash = player.getCash();
+        double actualCash = player.getCash();
         int expectedCash = 500 - 50;
-        assertEquals("the cash of player should be " + expectedCash, expectedCash, actualCash);
+        assertEquals("the cash of player should be " + expectedCash, expectedCash, actualCash, 0);
     }
 
     @Test
