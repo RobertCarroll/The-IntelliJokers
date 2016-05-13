@@ -17,9 +17,13 @@ public class HorseRace {
         leadHorse = horses[9];
     }
 
+    public int getMaxSpeed(){
+        return (int)(Math.random()*(20-10) + 10);
+    }
+
     public void loadHorses(){
         for(int i = 0; i < 10; i++){
-            horses[i] = new Horse((int)(Math.random()*(20-10) + 10));
+            horses[i] = new Horse(getMaxSpeed());
         }
 
         leadHorse = horses[0];
