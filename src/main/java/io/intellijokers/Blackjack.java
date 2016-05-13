@@ -11,7 +11,6 @@ public class Blackjack extends CardGame{
 
 
     private int currentBet;
-    private boolean ace;
     private int aceValue;
     private boolean bust;
 
@@ -56,22 +55,6 @@ public class Blackjack extends CardGame{
             return true;
         else
             return false;
-    }
-
-    /**
-     * Checks for an Ace in the users hand.
-     * @param whosHand
-     * @return
-     */
-    public boolean isAceInHand(User whosHand){
-        for(Card card : whosHand.getHand()){
-            if(card.getBlackjackValue() == 1){
-                boolean ace = true;
-            } else {
-                boolean ace = false;
-            }
-        }
-       return ace;
     }
 
     /**
@@ -130,9 +113,9 @@ public class Blackjack extends CardGame{
      */
     public String displayScoreBoard(){
         String scoreboard = "";
-        String bet = "Current Bet : $" + getCurrentBet() + "   Total Cash: $" + player.getCash() +"\n";
+        String bet = "Current Bet : $" + getCurrentBet() + "   Total Cash : $" + player.getCash() +"\n";
         scoreboard += bet + "\n" + "Dealer : " + displayHand(dealer) + "\n" +
-                player.getName() + ": " + displayHand(player);
+                player.getName() + " : " + displayHand(player);
         return scoreboard;
     }
 
@@ -165,22 +148,35 @@ public class Blackjack extends CardGame{
     }
 
     /**
-     * Returns the currentBet.
+     * Returns the current bet.
      * @return
      */
     public int getCurrentBet() {
         return currentBet;
     }
 
+    /**
+     * Sets the current bet.
+     * @param currentBet
+     */
     public void setCurrentBet(int currentBet) {
         this.currentBet = currentBet;
     }
 
+    /**
+     * Places a bet for the hand.
+     * @return
+     */
     public int placeYourBet(){
         setCurrentBet(prompt.promptTheUserForAnInteger("How much would you like to bet?   " +
                 "  Total Cash: $" + player.getCash()));
         player.setCash(player.getCash() - currentBet);
         return getCurrentBet();
+    }
+
+    public void winHand(){
+        player.setCash(player.getCash() + getCurrentBet()*2);
+        prompt.promptUser("You won $" + getCurrentBet());
     }
 
 

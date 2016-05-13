@@ -47,19 +47,19 @@ public class BlackjackSpec {
     }
 
     @Test
-    public void bustCheck(){
+    public void bustCheckFalse(){
         boolean expected = false;
         boolean actual = blackjack.bustCheck(player);
         assertEquals("Should return true if the user busts",expected,actual);
     }
 
     @Test
-    public void isAceInHandTest(){
+    public void bustCheckTrue(){
         player.getHand().add(dealer.dealCard());
-        player.getHand().add(dealer.dealCard());
-        boolean expected = false;
-        boolean actual = blackjack.isAceInHand(player);
-        assertEquals("Should return false if no ace is in hand",expected,actual);
+        player.getHand().get(0).setBlackjackValue(25);
+        boolean expected = true;
+        boolean actual = blackjack.bustCheck(player);
+        assertEquals("Should return true if the user busts",expected,actual);
     }
 
     @Test
@@ -146,9 +146,24 @@ public class BlackjackSpec {
         player.getHand().add(dealer.dealCard());
         dealer.getHand().add(dealer.dealCard());
         dealer.getHand().add(dealer.dealCard());
-        String expected = "Dealer :   0\n\nPlayer :   0\n";
+        String expected = "Current Bet : $0   Total Cash : $500\n\nDealer :   0\n\nChester Tester :   0\n";
         String actual = blackjack.displayScoreBoard();
         assertEquals(expected,actual);
+    }
+
+    @Test
+    public void faceDownTest(){
+        String expected = "[?]";
+        String actual = blackjack.faceDown();
+        assertEquals("Should return the card-face-down symbol",expected,actual);
+    }
+
+    @Test
+    public void setGetCurrentBetTest(){
+        blackjack.setCurrentBet(50);
+        int expected = 50;
+        int actual = blackjack.getCurrentBet();
+        assertEquals("Getter should match setter", expected, actual);
     }
 
 }
