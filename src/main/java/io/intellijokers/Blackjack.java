@@ -347,11 +347,7 @@ public class Blackjack extends CardGame{
                 wantToPlay = wantToPlay();
             }
         }
-
-    public static void main(String[] args) {
-        Blackjack blackjack = new Blackjack();
-        blackjack.run();
-    }
+    
     
 }
 
