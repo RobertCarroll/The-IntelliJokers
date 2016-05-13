@@ -17,6 +17,7 @@ public class PlayerSpec {
     double err;
     ArrayList<Integer> bets;
 
+
     @Before
     public void Sandbox() {
         amount = 500;
@@ -29,6 +30,7 @@ public class PlayerSpec {
     }
 
     @Test
+
     public void setGetCashTest() {
         player.setCash(amount);
         int actualCash = player.getCash();
@@ -57,5 +59,6 @@ public class PlayerSpec {
         int expectedMoney = 50;
         assertEquals("the bet should return the money", expectedMoney, money);
     }
+
 }
 
