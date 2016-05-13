@@ -1,11 +1,13 @@
-package io.dimitrivaughn;
+package io.intellijokers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by dimitrivaughn on 5/11/16.
  */
 public class Roulette {
+
 
     static {
         HashMap<Integer, String> rouletteMap = new HashMap<Integer, String>();
@@ -51,21 +53,48 @@ public class Roulette {
     }
 
 
-
+// Initializing fields
 
     private int winningNumber;
+    private String winningColor;
+    ArrayList<Integer> bets = new ArrayList<>();
 
-    public void takeBet(){}
+// Sets a randomly generated winning number (0-36)
+
 
     public void setWinningNumber(){
         winningNumber = (int) (Math.random()*36);
     }
 
+// Returns the winning number
+
     public int getWinningNumber(){
         return winningNumber;
     }
 
-    public void payPlayer(){}
+// Returns the bets array lists
+
+    public ArrayList getBets(){
+        return bets;
+    }
+
+
+// Stores a straight bet (single number)
+
+    public void betStraight(int number){
+        bets.add(number);
+    }
+
+// Stores an even bet
+
+    public void betEven(){
+        for(int i=2; i <= 36; i= i+2){
+            betStraight(i);
+        }
+    }
+
+
+
 
     public void determineWinner(){}
 
