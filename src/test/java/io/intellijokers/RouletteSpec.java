@@ -8,21 +8,21 @@ import static org.junit.Assert.assertEquals;
  */
 public class RouletteSpec {
 
-    @Test
-
-    public void spinWheelTest(){
-        Roulette roly = new Roulette();
-        roly.setWheelNumber();
-        boolean bool;
-        if (roly.getWheelNumber()>=0 && roly.getWheelNumber()<=36){
-            bool = true;
-        }
-        else {
-            bool = false;
-        }
-        boolean expectedValue = true;
-        boolean actualValue = bool;
-        assertEquals("Expected value = True",expectedValue, actualValue);
-
-    }
+//    @Test
+//
+//    public void spinWheelTest(){
+//        Roulette roly = new Roulette();
+//        roly.setWheelNumber();
+//        boolean bool;
+//        if (roly.getWheelNumber()>=0 && roly.getWheelNumber()<=36){
+//            bool = true;
+//        }
+//        else {
+//            bool = false;
+//        }
+//        boolean expectedValue = true;
+//        boolean actualValue = bool;
+//        assertEquals("Expected value = True",expectedValue, actualValue);
+//
+//    }
 }

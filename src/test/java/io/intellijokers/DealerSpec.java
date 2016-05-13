@@ -13,7 +13,7 @@ public class DealerSpec {
     Player player;
 //    AI ai;
     String name;
-    double ammount;
+    int ammount;
     @Before
     public void Sandbox(){
         name = "Dandy Randy";
