@@ -11,8 +11,6 @@ public class Blackjack extends CardGame{
 
 
     private int currentBet;
-    private int aceValue;
-    private boolean bust;
 
 
     /**
@@ -86,7 +84,7 @@ public class Blackjack extends CardGame{
     /**
      * Inserts a 2 second delay.
      */
-    public void delay(){
+    private void delay(){
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -124,7 +122,7 @@ public class Blackjack extends CardGame{
      * Confirms user wants to continue playing.
      * @return
      */
-    public boolean wantToPlay() {
+    private boolean wantToPlay() {
         boolean wantToPlay = false;
         int again = prompt.promptTheUserForAnInteger("Continue playing? " +
                 "\n1 : Yes\n2 : No");
