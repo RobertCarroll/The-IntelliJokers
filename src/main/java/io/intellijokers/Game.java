@@ -61,9 +61,6 @@ abstract class Game {
     public void setCurrentPlayers(Player player) {
         currentPlayers.add(player);
     }
-
-    public abstract void takeBet(int wager);
-
     /**
      * This method is used by Black Jack, Horse Racing, and Roulette.
      * It will have a slightly different int odds for each but the action
@@ -77,5 +74,5 @@ abstract class Game {
         player.setCash( player.getCash() + earnings);
     }
 
-    public abstract void determineWinner();
+    //public abstract void determineWinner();
 }

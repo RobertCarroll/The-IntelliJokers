@@ -1,5 +1,11 @@
 package io.intellijokers;
 
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 public class HorseRace {
@@ -68,8 +74,23 @@ public class HorseRace {
         delayProgram();
     }
 
+    public void playSong(){
+        String audioFile = "";
+        InputStream in = null;
+        AudioStream audioStream = null;
+        try {
+            in = new FileInputStream(audioFile);
+            audioStream = new AudioStream(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AudioPlayer.player.start(audioStream);
+    }
+
     public void startRace(){
         loadHorses();
+        //playSong();
 
         completeRaceLeg(100, "first turn");
         completeRaceLeg(150, "backstretch");
