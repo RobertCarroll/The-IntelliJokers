@@ -2,34 +2,27 @@ package io.intellijokers;
 
 import java.util.ArrayList;
 
-/**
- * Created by stevejaminson on 5/11/16.
- */
 public class Deck {
-    private ArrayList<Card> deck;
+    public ArrayList<Card> deck;
+    private String[] cardFaces = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+    private int[] blackJackValues = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
+    private int[] pokerRanks = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
-    public ArrayList<Card> getDeck() {
-        return deck;
+    private void populateDeck(){
+        for(int i = 0; i < cardFaces.length; i++){
+            for(Card.Suits suitValue : Card.Suits.values()){
+                int pokerRank = pokerRanks[i];
+                int blackjackValue = blackJackValues[i];
+                Card.Suits suit = suitValue;
+                String display = "[" + cardFaces[i] + suitValue.suitIcon + "]";
+
+                deck.add(new Card(display, pokerRank, blackjackValue, suit));
+            }
+        }
     }
 
-    public void setDeck(ArrayList<Card> deck) {
-        this.deck = deck;
+    public Deck(){
+        deck = new ArrayList<>();
+        populateDeck();
     }
-
-
-
-    private ArrayList populateDeck(){
-        return null;
-    }
-
-    public void draw(User user){
-        Card drawnCard = deck.get(deck.size());
-        deck.remove(deck.size());
-        user.hand.add(drawnCard);
-    }
-
-    public void shuffle(){
-
-    }
-
 }
