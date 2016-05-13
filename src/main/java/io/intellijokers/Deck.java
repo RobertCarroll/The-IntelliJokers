@@ -9,7 +9,7 @@ public class Deck {
     Card card = new Card();
 
     public String[] cardFace = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-    public int[] cardBjValue = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 1};
+    public int[] cardBjValue = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
     public int[] cardRank = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
     public enum Suits {

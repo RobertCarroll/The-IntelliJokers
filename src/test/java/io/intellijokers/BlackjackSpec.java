@@ -48,27 +48,10 @@ public class BlackjackSpec {
     }
 
     @Test
-    public void splitTest(){
-        Blackjack blackjack = new Blackjack();
-        boolean expected = true;
-        boolean actual = blackjack.split();
-        assertEquals("Should return true if the user splits",expected,actual);
-    }
-
-    @Test
     public void bustCheck(){
-        Blackjack blackjack = new Blackjack();
-        boolean expected = true;
-        boolean actual = blackjack.bustCheck();
+        boolean expected = false;
+        boolean actual = blackjack.bustCheck(player);
         assertEquals("Should return true if the user busts",expected,actual);
-    }
-
-    @Test
-    public void insuranceTest(){
-        Blackjack blackjack = new Blackjack();
-        boolean expected = true;
-        boolean actual = blackjack.insurance();
-        assertEquals("Should return true if the user takes insurance",expected,actual);
     }
 
     @Test
@@ -88,4 +71,46 @@ public class BlackjackSpec {
         int actual = blackjack.evaluateHand(player);
         assertEquals("Hand total should be 5",expected,actual);
     }
+
+    @Test
+    public void reduceAceValueTest(){
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        blackjack.reduceAceValue(player);
+        int expected = 85;
+        int actual = blackjack.evaluateHand(player);
+        assertEquals("Hand total should be 85 after ace is reduced", expected, actual);
+    }
+
+    @Test
+    public void displayHandTest(){
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        String expected = "[2\u2663][3\u2663]  5\n";
+        String actual = blackjack.displayHand(player);
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void displayScoreBoardTest(){
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        dealer.getHand().add(dealer.dealCard());
+        dealer.getHand().add(dealer.dealCard());
+        String expected = "Dealer :   0\n\nPlayer :   0\n";
+        String actual = blackjack.displayScoreBoard();
+        assertEquals(expected,actual);
+    }
+
 }
