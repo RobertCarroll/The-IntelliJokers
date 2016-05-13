@@ -17,7 +17,7 @@ public class DealerSpec {
     Player player;
 //    AI ai;
     String name;
-    double amount;
+    int amount;
     ArrayList<Card> newDeck;
 
     @Before
