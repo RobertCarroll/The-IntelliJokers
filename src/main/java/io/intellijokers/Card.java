@@ -98,7 +98,7 @@ public class Card {
                     break;
             }
 
-        }else {
+        }else {//this is just about where I had to start doing robocode... you should look over this
 
             switch(this.rank) {
                 case 11:
@@ -112,12 +112,6 @@ public class Card {
         }
         return value;
         }
-//        if(rank == 1 || rank == 11){
-//            value = "A";
-//        }else{
-//            value = Integer.toString(this.getRank());
-//        }
-//        return value+" "+getSuit().getUnicode();
     }
 
     public int getBlackJackValue(){
