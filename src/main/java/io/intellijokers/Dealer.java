@@ -7,30 +7,21 @@ import java.util.Collections;
  * Created by alejandrolondono on 5/11/16.
  */
 public class Dealer extends User {
-    Deck deck = new Deck();
-    private ArrayList<Card> newDeck = deck.populateDeck();
     String name = "Dealer";
     private int nextCard = -1;
+    private Deck deck;
 
     public Dealer(){
         super("dealer");
-        ArrayList<Card> newDeck = deck.populateDeck();
+        deck = new Deck();
     }
 
-    /**
-     * Gets a deck.
-     * @return
-     */
-    public ArrayList<Card> getDeck() {
-        return newDeck;
-    }
 
     /**
      * Takes in an array list of cards(deck) and shuffles it.
-     * @param deck
      */
-    public void shuffleDeck(ArrayList<Card> deck){
-        Collections.shuffle(deck);
+    public void shuffleDeck(){
+        Collections.shuffle(deck.deck);
     }
 
     /**
@@ -39,6 +30,10 @@ public class Dealer extends User {
      */
     public Card dealCard(){
         nextCard++;
-        return newDeck.get(nextCard);
+        return deck.deck.get(nextCard);
+    }
+
+    public ArrayList<Card> getDeck(){
+        return deck.deck;
     }
 }

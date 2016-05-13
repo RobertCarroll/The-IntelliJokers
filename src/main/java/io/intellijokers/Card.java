@@ -6,19 +6,48 @@ package io.intellijokers;
  */
 public class Card {
 
-    int rank;
-    Deck.Suits suit;
-    int blackjackValue;
-    String display;
+    private String cardDisplay;
+    private int pokerRank;
+    private int blackjackValue;
+    private Suits suit;
 
-    public Card() {
+    public enum Suits{
+        SPADES("\u2660"), HEARTS("\u2764"), DIAMONDS("\u2666"), CLUBS("\u2663");
+
+        String suitIcon;
+        Suits(String string){
+            suitIcon = string;
+        }
     }
 
-    public Card(int thisRank, Deck.Suits thisSuit, int thisBlackjackValue, String thisDisplay) {
-        this.rank = thisRank;
-        this.suit = thisSuit;
-        this.blackjackValue = thisBlackjackValue;
-        this.display = thisDisplay;
+    public Card(String display, int pokerRank, int blackjackValue, Suits suit){
+        cardDisplay = display;
+        this.pokerRank = pokerRank;
+        this.blackjackValue = blackjackValue;
+        this.suit = suit;
     }
 
+    public Suits getSuit() {
+        return suit;
+    }
+
+    public String getCardDisplay() {
+        return cardDisplay;
+    }
+
+    public int getPokerRank() {
+        return pokerRank;
+    }
+
+    public int getBlackjackValue() {
+        return blackjackValue;
+    }
+
+    public void setBlackjackValue(int value){
+        blackjackValue = value;
+    }
+
+    public void setCardDisplay(String display){
+        cardDisplay = display;
+    }
 }

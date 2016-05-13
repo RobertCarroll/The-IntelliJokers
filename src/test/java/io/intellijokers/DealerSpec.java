@@ -25,31 +25,16 @@ public class DealerSpec {
         name = "Dandy Randy";
         dealer = new Dealer();
         deck = new Deck();
-        newDeck = deck.populateDeck();
         player = new Player(name, amount);
 //        ai = new AI();
     }
 
-    @Test
-    public void getDeck(){
-        int expected  = deck.populateDeck().get(33).blackjackValue;
-        int actual = dealer.getDeck().get(33).blackjackValue;
-        assertEquals("Decks should match", expected, actual);
-    }
-
-    @Test
-    public void shuffleDeckTest(){
-        dealer.shuffleDeck(newDeck);
-        int expected = 2;
-        int actual = newDeck.get(0).rank;
-        assertThat("Cards should usually not be the same after shuffle",expected, not(actual));
-    }
 
     @Test
     public void dealCardTest(){
         Card testCard = dealer.dealCard();
         String expected = "[2\u2663]";
-        String actual = testCard.display;
+        String actual = testCard.getCardDisplay();
         assertEquals(expected,actual);
     }
 

@@ -1,69 +1,36 @@
 package io.intellijokers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by stevejaminson on 5/11/16.
  */
-public class Deck {
-    Card card = new Card();
+public class Deck { public ArrayList<Card> deck;
+    private String[] cardFaces = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+    private int[] blackJackValues = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
+    private int[] pokerRanks = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
-    public String[] cardFace = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-    public int[] cardBjValue = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
-    public int[] cardRank = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+    private void populateDeck(){
+        for(int i = 0; i < cardFaces.length; i++){
+            for(Card.Suits suitValue : Card.Suits.values()){
+                int pokerRank = pokerRanks[i];
+                int blackjackValue = blackJackValues[i];
+                Card.Suits suit = suitValue;
+                String display = "[" + cardFaces[i] + suitValue.suitIcon + "]";
 
-    public enum Suits {
-        SPADES, HEARTS, DIAMONDS, CLUBS
-    }
-
-
-    public ArrayList<Card> populateDeck() {
-        ArrayList<Card> deck = new ArrayList<Card>();
-        int cardTotal = 0;
-        Deck.Suits suit = null;
-        for (int i = 0; i < Deck.Suits.values().length; i++) {
-            for (int j = 0; j < cardFace.length; j++) {
-                switch (i) {
-                    case 0:
-                        suit = Deck.Suits.CLUBS;
-                        break;
-                    case 1:
-                        suit = Deck.Suits.DIAMONDS;
-                        break;
-                    case 2:
-                        suit = Deck.Suits.HEARTS;
-                        break;
-                    case 3:
-                        suit = Deck.Suits.SPADES;
-                        break;
-                }
-                String sign = "";
-                switch (suit) {
-                    case CLUBS:
-                        sign = "\u2663";
-                        break;
-                    case DIAMONDS:
-                        sign = "\u2666";
-                        break;
-                    case HEARTS:
-                        sign = "\u2764";
-                        break;
-                    case SPADES:
-                        sign = "\u2660";
-                        break;
-
-                }
-                deck.add(cardTotal, new Card(cardRank[j], suit, cardBjValue[j], "[" + cardFace[j] + sign + "]"));
-                cardTotal++;
+                deck.add(new Card(display, pokerRank, blackjackValue, suit));
             }
         }
-        return deck;
     }
 
-    public static void main(String[] args) {
-        Deck deck = new Deck();
-        ArrayList<Card> newDeck = deck.populateDeck();
-        System.out.println(newDeck.size());
+    public Deck(){
+        deck = new ArrayList<>();
+        populateDeck();
+    }
+
+    public void shuffle(){
+        Collections.shuffle(deck);
     }
 }
 
