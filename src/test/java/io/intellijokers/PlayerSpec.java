@@ -24,7 +24,7 @@ public class PlayerSpec {
         amount = 500;
         err = .01;
         player = new Player(name, amount);
-        bets = new ArrayList<>();
+        bets = new ArrayList();
         bets.add(1);
         bets.add(2);
         bets.add(3);
@@ -48,7 +48,7 @@ public class PlayerSpec {
     @Test
     public void storeBetListTest(){
         player.placeBet(50, bets);
-        int expectedBet = player.bets.get(1);
+        int expectedBet = player.getBets().get(1);
         int actualBet = 2;
         assertEquals("bet int should be the same",expectedBet,actualBet);
     }

@@ -8,7 +8,25 @@ import java.util.ArrayList;
 public class Player extends User{
 
     int cash = 0;
-    ArrayList<Integer> bets;
+    private ArrayList<Integer> bets= new ArrayList<>();
+    private String betColor;
+
+
+    public ArrayList<Integer> getBets() {
+        return bets;
+    }
+
+    public void setBets(ArrayList<Integer> bets) {
+        this.bets = bets;
+    }
+
+    public String getBetColor() {
+        return betColor;
+    }
+
+    public void setBetColor(String betColor) {
+        this.betColor = betColor;
+    }
 
     public int getCash() {
         return cash;

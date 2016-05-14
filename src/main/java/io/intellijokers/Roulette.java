@@ -8,59 +8,62 @@ import java.util.HashMap;
  */
 public class Roulette {
 
+    // Initializing hashmap to create roulette table
+
+    static HashMap<Integer, String> hashMap = new HashMap<>();
+
 
     static {
-        HashMap<Integer, String> rouletteMap = new HashMap<Integer, String>();
 
-        rouletteMap.put(0, "GREEN");
-        rouletteMap.put(1, "RED");
-        rouletteMap.put(2, "BLACK");
-        rouletteMap.put(3, "RED");
-        rouletteMap.put(4, "BLACK");
-        rouletteMap.put(5, "RED");
-        rouletteMap.put(6, "BLACK");
-        rouletteMap.put(7, "RED");
-        rouletteMap.put(8, "BLACK");
-        rouletteMap.put(9, "RED");
-        rouletteMap.put(10, "BLACK");
-        rouletteMap.put(11, "BLACK");
-        rouletteMap.put(12, "RED");
-        rouletteMap.put(13, "BLACK");
-        rouletteMap.put(14, "RED");
-        rouletteMap.put(15, "BLACK");
-        rouletteMap.put(16, "RED");
-        rouletteMap.put(17, "BLACK");
-        rouletteMap.put(18, "RED");
-        rouletteMap.put(19, "RED");
-        rouletteMap.put(20, "BLACK");
-        rouletteMap.put(21, "RED");
-        rouletteMap.put(22, "BLACK");
-        rouletteMap.put(23, "RED");
-        rouletteMap.put(24, "BLACK");
-        rouletteMap.put(25, "RED");
-        rouletteMap.put(26, "BLACK");
-        rouletteMap.put(27, "RED");
-        rouletteMap.put(28, "BLACK");
-        rouletteMap.put(29, "BLACK");
-        rouletteMap.put(30, "RED");
-        rouletteMap.put(31, "BLACK");
-        rouletteMap.put(32, "RED");
-        rouletteMap.put(33, "BLACK");
-        rouletteMap.put(34, "RED");
-        rouletteMap.put(35, "BLACK");
-        rouletteMap.put(36, "RED");
+        hashMap.put(0, "GREEN");
+        hashMap.put(1, "RED");
+        hashMap.put(2, "BLACK");
+        hashMap.put(3, "RED");
+        hashMap.put(4, "BLACK");
+        hashMap.put(5, "RED");
+        hashMap.put(6, "BLACK");
+        hashMap.put(7, "RED");
+        hashMap.put(8, "BLACK");
+        hashMap.put(9, "RED");
+        hashMap.put(10, "BLACK");
+        hashMap.put(11, "BLACK");
+        hashMap.put(12, "RED");
+        hashMap.put(13, "BLACK");
+        hashMap.put(14, "RED");
+        hashMap.put(15, "BLACK");
+        hashMap.put(16, "RED");
+        hashMap.put(17, "BLACK");
+        hashMap.put(18, "RED");
+        hashMap.put(19, "RED");
+        hashMap.put(20, "BLACK");
+        hashMap.put(21, "RED");
+        hashMap.put(22, "BLACK");
+        hashMap.put(23, "RED");
+        hashMap.put(24, "BLACK");
+        hashMap.put(25, "RED");
+        hashMap.put(26, "BLACK");
+        hashMap.put(27, "RED");
+        hashMap.put(28, "BLACK");
+        hashMap.put(29, "BLACK");
+        hashMap.put(30, "RED");
+        hashMap.put(31, "BLACK");
+        hashMap.put(32, "RED");
+        hashMap.put(33, "BLACK");
+        hashMap.put(34, "RED");
+        hashMap.put(35, "BLACK");
+        hashMap.put(36, "RED");
 
     }
-
 
 // Initializing fields
 
     private int winningNumber;
     private String winningColor;
+
+
     ArrayList<Integer> bets = new ArrayList<>();
 
 // Sets a randomly generated winning number (0-36)
-
 
     public void setWinningNumber(){
         winningNumber = (int) (Math.random()*36);
@@ -72,12 +75,23 @@ public class Roulette {
         return winningNumber;
     }
 
-// Returns the bets array lists
+// Returns the winning color
 
-    public ArrayList getBets(){
-        return bets;
+    public String getWinningColor() {
+        return winningColor;
     }
 
+// Sets the winning color
+
+    public void setWinningColor(String winningColor) {
+        this.winningColor = winningColor;
+    }
+
+// Returns the bets array lists
+
+    public ArrayList<Integer> getBets(){
+        return bets;
+    }
 
 // Stores a straight bet (single number)
 
@@ -93,33 +107,61 @@ public class Roulette {
         }
     }
 
+// Stores an odd bet
+
+    public void betOdd(){
+        for(int i=1; i <= 36; i= i+2){
+            betStraight(i);
+        }
+    }
+
+// Stores a color bet
+
+    public void betColor(Player player, String color){
+            player.setBetColor(color);
+    }
 
 
 
-    public void determineWinner(){}
 
 
 
+    public boolean determineWinner(Player player){
+
+        boolean playerWins = false;
+        int winNum = getWinningNumber();
 
 
+        if(player.getBets().size()!=0){
 
-    public void greetPlayer(){}
+            playerWins = player.getBets().contains(winNum);
+        }
+        else{
+            String winColor = hashMap.get(winNum);
+            String betColor = player.getBetColor();
+            playerWins = winColor.equalsIgnoreCase(betColor);
 
-    public void printBettingOptions(){}
+        }
 
-    public void giveHistory1(){}
-
-    public void runHistoryLoop(){}
-
-    public void printGameManual(){}
-
-    public void rouletteEngine(){}
-
-
-    public static void main(String[] args) {
+        return playerWins;
 
 
 
     }
+
+
+
+
+
+
+
+
+    public void rouletteEngine(
+
+
+    ){}
+
+
+
 
 }
