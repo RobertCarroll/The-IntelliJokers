@@ -126,7 +126,7 @@ public class BlackjackSpec {
         player.getHand().add(dealer.dealCard());
         player.getHand().add(dealer.dealCard());
         blackjack.reduceAceValue(player);
-        int expected = 340;
+        int expected = 330;
         int actual = blackjack.evaluateHand(player);
         assertEquals("Hand total should be 85 after ace is reduced", expected, actual);
     }
@@ -173,6 +173,67 @@ public class BlackjackSpec {
         int expected = 50;
         int actual = blackjack.getCurrentBet();
         assertEquals("Total should be $50 after win", expected, actual);
+    }
+
+    @Test
+    public void resetAceValueTest(){
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        player.getHand().add(dealer.dealCard());
+        blackjack.reduceAceValue(player);
+        blackjack.resetAceValue();
+        int expected = 11;
+        int actual = dealer.getDeck().get(51).getBlackjackValue();
+        assertEquals("Hand total should be 85 after ace is reduced", expected, actual);
     }
 
 }
