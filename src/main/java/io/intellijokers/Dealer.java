@@ -30,6 +30,9 @@ public class Dealer extends User {
      */
     public Card dealCard(){
         nextCard++;
+        if(nextCard >= 46){
+            nextCard = 0;
+        }
         return deck.deck.get(nextCard);
     }
 

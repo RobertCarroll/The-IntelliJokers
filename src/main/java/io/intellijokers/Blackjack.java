@@ -81,6 +81,14 @@ public class Blackjack extends CardGame{
         }
     }
 
+    public void resetAceValue(){
+        for(Card card : dealer.getDeck()) {
+            if (card.getBlackjackValue() == 1) {
+                card.setBlackjackValue(11);
+            }
+        }
+    }
+
     /**
      * Inserts a 2 second delay.
      */
@@ -181,11 +189,13 @@ public class Blackjack extends CardGame{
         boolean wantToPlay = true;
         while(wantToPlay) {
 
+            resetAceValue();
             dealer.shuffleDeck();
             boolean busted = false;
-            boolean dealerTurn = false;
+            boolean blackjack = false;
             player.getHand().clear();
             dealer.getHand().clear();
+
 
             setCurrentBet(player.placeBet(prompt.promptTheUserForAnInteger("How much would you " +
                     "like to bet?     Total Cash: $" + player.getCash())));
@@ -213,71 +223,72 @@ public class Blackjack extends CardGame{
 
             if (evaluateHand(player) == 21 && evaluateHand(dealer) != 21) {
                 payout(1.5, player);
+                blackjack = true;
             }
 
             /**
              * If no one has blackjack, continue with the game. Player can hit, stay, or double.
              */
+            if(!blackjack) {
+                int choice = prompt.promptTheUserForAnInteger("Choose an option: \n" +
+                        "1 : Hit\n" +
+                        "2 : Stay\n" +
+                        "3 : Double Down");
 
-            int choice = prompt.promptTheUserForAnInteger("Choose an option: \n" +
-                    "1 : Hit\n" +
-                    "2 : Stay\n" +
-                    "3 : Double Down");
-
-            switch (choice) {
-                case 1:
-                    hit(player);
-                    if(evaluateHand(player) > 21) {
-                        reduceAceValue(player);
-                    }
-                    while (evaluateHand(player) < 21) {
-                        int nextMove = prompt.promptTheUserForAnInteger(displayScoreBoard()
-                                + "\nChoose an option: \n" +
-                                "1 : Hit\n" +
-                                "2 : Stay");
-                        switch (nextMove) {
-                            case 1:
-                                hit(player);
-                                if(evaluateHand(player) > 21){
-                                    reduceAceValue(player);
-                                }
-                                break;
-                            case 2:
-                                stand(player);
-                                break;
+                switch (choice) {
+                    case 1:
+                        hit(player);
+                        if (evaluateHand(player) > 21) {
+                            reduceAceValue(player);
                         }
+                        while (evaluateHand(player) < 21) {
+                            int nextMove = prompt.promptTheUserForAnInteger(displayScoreBoard()
+                                    + "\nChoose an option: \n" +
+                                    "1 : Hit\n" +
+                                    "2 : Stay");
+                            switch (nextMove) {
+                                case 1:
+                                    hit(player);
+                                    if (evaluateHand(player) > 21) {
+                                        reduceAceValue(player);
+                                    }
+                                    break;
+                                case 2:
+                                    stand(player);
+                                    break;
+                            }
 
-                        if (nextMove == 2) {
-                            break;
+                            if (nextMove == 2) {
+                                break;
+                            }
+
                         }
+                        break;
 
-                    }
-                    break;
+                    case 2:
+                        stand(player);
+                        break;
 
-                case 2:
-                    stand(player);
-                    break;
+                    case 3:
+                        prompt.promptUser("You doubled-down!");
+                        doubleDown();
+                        if (evaluateHand(player) > 21) {
+                            reduceAceValue(player);
+                        }
+                        displayScoreBoard();
+                        break;
 
-                case 3:
-                    prompt.promptUser("You doubled-down!");
-                    doubleDown();
-                    if(evaluateHand(player) > 21){
-                        reduceAceValue(player);
-                    }
-                    displayScoreBoard();
-                    break;
+                }
 
-            }
-
-            if (bustCheck(player)) {
-                prompt.promptUser(displayScoreBoard() + "\nYou busted.\n");
-                delay();
-                dealer.getHand().get(1).setCardDisplay(downCard);
-                dealer.getHand().get(1).setBlackjackValue(downNum);
-                prompt.promptUser("Dealer had : \n\n" + displayScoreBoard() +
-                        "\nYou busted and lost $" + getCurrentBet() + "\n");
-                busted = true;
-            }
+                if (bustCheck(player)) {
+                    prompt.promptUser(displayScoreBoard() + "\nYou busted.\n");
+                    delay();
+                    dealer.getHand().get(1).setCardDisplay(downCard);
+                    dealer.getHand().get(1).setBlackjackValue(downNum);
+                    prompt.promptUser("Dealer had : \n\n" + displayScoreBoard() +
+                            "\nYou busted and lost $" + getCurrentBet() + "\n");
+                    busted = true;
+                }
 
                 while (!busted) {
 
@@ -298,7 +309,7 @@ public class Blackjack extends CardGame{
                         prompt.promptUser("Dealer hits!\n");
                         delay();
                         hit(dealer);
-                        if(evaluateHand(dealer) > 21){
+                        if (evaluateHand(dealer) > 21) {
                             reduceAceValue(dealer);
                         }
                         prompt.promptUser(displayScoreBoard());
@@ -311,7 +322,7 @@ public class Blackjack extends CardGame{
                      */
                     if (evaluateHand(dealer) > 21) {
                         prompt.promptUser("Dealer busted!");
-                        payout(1,player);
+                        payout(1, player);
                         delay();
                         busted = true;
                     } else {
@@ -343,11 +354,16 @@ public class Blackjack extends CardGame{
                         }
                     }
                 }
+            }
 
                 wantToPlay = wantToPlay();
             }
         }
-    
+
+    public static void main(String[] args) {
+        Blackjack blackjack = new Blackjack();
+        blackjack.run();
+    }
     
 }
 
