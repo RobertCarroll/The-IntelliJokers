@@ -33,7 +33,7 @@ public class DealerSpec {
     @Test
     public void dealCardTest(){
         Card testCard = dealer.dealCard();
-        String expected = "[2\u2663]";
+        String expected = "[2"+Card.Suits.SPADES.suitIcon+"]";
         String actual = testCard.getCardDisplay();
         assertEquals(expected,actual);
     }

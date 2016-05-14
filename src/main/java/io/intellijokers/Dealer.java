@@ -21,7 +21,7 @@ public class Dealer extends User {
      * Takes in an array list of cards(deck) and shuffles it.
      */
     public void shuffleDeck(){
-        Collections.shuffle(deck.deck);
+        Collections.shuffle(deck.getDeck());
     }
 
     /**
@@ -30,10 +30,8 @@ public class Dealer extends User {
      */
     public Card dealCard(){
         nextCard++;
-        return deck.deck.get(nextCard);
+        return deck.getDeck().get(nextCard);
     }
 
-    public ArrayList<Card> getDeck(){
-        return deck.deck;
-    }
+
 }

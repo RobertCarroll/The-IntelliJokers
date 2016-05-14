@@ -6,7 +6,10 @@ import java.util.Collections;
 /**
  * Created by stevejaminson on 5/11/16.
  */
-public class Deck { public ArrayList<Card> deck;
+public class Deck {
+
+
+    private ArrayList<Card> deck;
     private String[] cardFaces = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
     private int[] blackJackValues = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
     private int[] pokerRanks = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
@@ -31,6 +34,14 @@ public class Deck { public ArrayList<Card> deck;
 
     public void shuffle(){
         Collections.shuffle(deck);
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+    public void setDeck(ArrayList<Card> deck) {
+        this.deck = deck;
     }
 }
 
