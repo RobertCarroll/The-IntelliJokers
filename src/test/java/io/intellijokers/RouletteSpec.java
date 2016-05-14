@@ -115,6 +115,7 @@ public class RouletteSpec {
         int winNum = roly.getWinningNumber();
         String winColor = roly.hashMap.get(winNum);
         player.setBetColor(winColor);
+        player.setBetType(Player.Choice.COLOR);
         boolean bool = roly.determineWinner(player);
         assertTrue("the winner should return true because they have the winning number: "+winColor, bool);
 

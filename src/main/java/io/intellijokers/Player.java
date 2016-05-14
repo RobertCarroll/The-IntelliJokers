@@ -1,5 +1,6 @@
 package io.intellijokers;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -8,8 +9,19 @@ import java.util.ArrayList;
 public class Player extends User{
 
     int cash = 0;
+
     private ArrayList<Integer> bets= new ArrayList<>();
     private String betColor;
+    public enum Choice{ COLOR, NUMBER}
+    private Choice betType = Choice.NUMBER;
+
+    public Choice getBetType() {
+        return betType;
+    }
+
+    public void setBetType(Choice betType) {
+        this.betType = betType;
+    }
 
 
     public ArrayList<Integer> getBets() {

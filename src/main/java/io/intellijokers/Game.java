@@ -8,6 +8,16 @@ public class Game {
     public ArrayList<String> currentPlayers = new ArrayList<String>();
     
     private int stage = 0;
+    private int betStore = 0;
+
+    public int getBetStore() {
+        return betStore;
+    }
+
+    public void setBetStore(int betStore) {
+        this.betStore = betStore;
+    }
+
 
     public int getStage() {
         return stage;
@@ -25,12 +35,12 @@ public class Game {
         return wager;
     }
 
-    public double payout(int odds, User player) {
-        return 0;
+    public int payOut(int odds) {
+        return odds*getBetStore();
     }
 
-    public double payout(User player) {
-        return 0;
+    public int payOut(){
+       return payOut(2);
     }
 
     //Add abstract when you get the chance
