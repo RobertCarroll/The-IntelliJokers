@@ -195,32 +195,32 @@ public class Roulette extends Game{
                     }else {
                         this.betStraight(Integer.parseInt(inputs[1]));
                         player.setBets(this.getBets());
-                        this.setBetStore(player.placeBet(Integer.parseInt(inputs[2])));
+                        this.setAmountBet(player.placeBet(Integer.parseInt(inputs[2])));
                         didCommandWork = true;
                     }
                     break;
                 case EVEN:
                     this.betEven();
                     player.setBets(this.getBets());
-                    this.setBetStore(player.placeBet(Integer.parseInt(inputs[1])));
+                    this.setAmountBet(player.placeBet(Integer.parseInt(inputs[1])));
 
                     didCommandWork = true;
                     break;
                 case ODD:
                     this.betOdd();
                     player.setBets(this.getBets());
-                    this.setBetStore(player.placeBet(Integer.parseInt(inputs[1])));
+                    this.setAmountBet(player.placeBet(Integer.parseInt(inputs[1])));
                     didCommandWork = true;
                     break;
                 case RED:
                     this.betColor(player, comm.toString().toUpperCase());
-                    this.setBetStore(player.placeBet(Integer.parseInt(inputs[1])));
+                    this.setAmountBet(player.placeBet(Integer.parseInt(inputs[1])));
                     player.setBetType(Player.Choice.COLOR);
                     didCommandWork = true;
                     break;
                 case BLACK:
                     this.betColor(player, comm.toString().toUpperCase());
-                    this.setBetStore(player.placeBet(Integer.parseInt(inputs[1])));
+                    this.setAmountBet(player.placeBet(Integer.parseInt(inputs[1])));
                     player.setBetType(Player.Choice.COLOR);
                     didCommandWork = true;
                     break;

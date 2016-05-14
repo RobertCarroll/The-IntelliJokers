@@ -6,9 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-/**
- * Created by alejandrolondono on 5/11/16.
- */
+
 public class PlayerSpec {
 
     Player player;
@@ -17,14 +15,12 @@ public class PlayerSpec {
     double err;
     ArrayList<Integer> bets;
 
-
-
     @Before
     public void Sandbox(){
         amount = 500;
         err = .01;
         player = new Player(name, amount);
-        bets = new ArrayList();
+        bets = new ArrayList(); //might need to add <>
         bets.add(1);
         bets.add(2);
         bets.add(3);
@@ -38,11 +34,20 @@ public class PlayerSpec {
     }
 
     @Test
-    public void placeBetTest(){
+    public void placeBetTest() {
         player.placeBet(50);
         int actualCash = player.getCash();
-        int expectedCash = 500-50;
-        assertEquals("the cash of player should be "+ expectedCash, expectedCash, actualCash);
+        int expectedCash = 500 - 50;
+        assertEquals("the cash of player should be " + expectedCash, expectedCash, actualCash);
+    }
+
+
+    @Test
+    public void placeBetTestReturn(){
+        int money = player.placeBet(50, bets);
+        int expectedMoney = 50;
+        assertEquals("the bet should return the money", expectedMoney, money);
+
     }
 
     @Test
@@ -53,11 +58,5 @@ public class PlayerSpec {
         assertEquals("bet int should be the same",expectedBet,actualBet);
     }
 
-    @Test
-    public void placeBetTestReturn(){
-        int money = player.placeBet(50,bets);
-        int expectedMoney = 50;
-        assertEquals("the bet should return the money", expectedMoney, money);
-    }
-
 }
+

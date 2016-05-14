@@ -1,49 +1,95 @@
 package io.intellijokers;
 
+/**
+ * Created by michaelcane on 5/11/16.
+ */
 import java.util.ArrayList;
 
-public class Game {
+abstract class Game {
 
-    //Change String in ArrayList to Player
-    public ArrayList<String> currentPlayers = new ArrayList<String>();
-    
-    private int stage = 0;
-    private int betStore = 0;
+    public ArrayList<Player> currentPlayers = new ArrayList<>();
 
-    public int getBetStore() {
-        return betStore;
+
+
+
+    private int round = 0;
+
+
+    private int amountBet = 0;
+
+    /**
+     * Resets the bet back to zero.
+     */
+    public void resetBet(){
+        this.amountBet = 0;
     }
 
-    public void setBetStore(int betStore) {
-        this.betStore = betStore;
+    /**
+     * Returns the current amount bet, used by the payout methods
+     * @return
+     */
+    public int getAmountBet() {
+        return amountBet;
     }
 
-
-    public int getStage() {
-        return stage;
+    /**
+     * Sets the amount the player bet.
+     * @param amountBet
+     */
+    public void setAmountBet(int amountBet) {
+        this.amountBet = amountBet;
     }
-
-    public void setStage(int stage) {
-        this.stage = stage;
-    }
-
-    public void setCurrentPlayers(String name) {
-        currentPlayers.add(name);
-    }
-
-    public int bet(int wager) {
-        return wager;
-    }
-
+    /**
+     * This method is used by Black Jack, Horse Racing, and Roulette.
+     * It will have a slightly different int odds for each but the action
+     * is the same for each.
+     * @param odds
+     * @param player
+     */
     public int payOut(int odds) {
-        return odds*getBetStore();
+        return odds*getAmountBet();
     }
 
     public int payOut(){
-       return payOut(2);
+        return payOut(2);
     }
 
-    //Add abstract when you get the chance
-    public void determineWinner() {
+
+    public void payout(int odds, Player player) {
+        int earnings = getAmountBet() * odds;
+        resetBet();
+        player.setCash( player.getCash() + earnings);
     }
+
+    public void increaseBet(int amountBet) {
+        this.amountBet += amountBet;
+    }
+    /**
+     * Returns the current round, used primarily by Poker
+     * @return
+     */
+    public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
+        this.round = round;
+    }
+    /**
+     * Sets the current round, used to reset the count of the round.
+     */
+    public void resetRound() {
+        this.round = 0;
+    }
+
+    /**
+     * Used to add players to the currentPlayers ArrayList.
+     * @param player
+     */
+    public void setCurrentPlayers(Player player) {
+        currentPlayers.add(player);
+    }
+
+
+    //public abstract void determineWinner();
 }
