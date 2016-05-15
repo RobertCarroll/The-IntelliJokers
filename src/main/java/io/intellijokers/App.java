@@ -1,8 +1,9 @@
 package io.intellijokers;
 
 public class App {
+    Casino casino= new Casino();
     public static void main(String[] args) {
-        Casino casino = new Casino();
-        casino.enterCasino();
+        App app = new App();
+        app.casino.enterCasino();
     }
 }

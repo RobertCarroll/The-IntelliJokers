@@ -82,8 +82,10 @@ public class Roulette extends Game{
         return winningNumber;
     }
 
-// Returns the bets array lists
 
+    public void setBets(ArrayList<Integer> bets){
+        this.bets = bets;
+    }
     public ArrayList<Integer> getBets(){
         return bets;
     }
@@ -157,7 +159,7 @@ public class Roulette extends Game{
                 commandWork = CLI(player, input);
             }while(!commandWork);
             String output = Arrays.asList(player.getBets()).toString();
-            //System.out.println(player.getName()+" bet "+input+" on: \n"+output.substring(2,output.length()-2));
+            System.out.println(player.getName()+" bet "+input+" on: \n"+output.substring(2,output.length()-2));
             setWinningNumber();
             if(determineWinner(player)){
                 System.out.println("\nYou Won! #gettingpunchedintheface");
@@ -171,6 +173,8 @@ public class Roulette extends Game{
             System.out.println("you now have "+player.getCash()+" in cash");
             System.out.println("\nwould you like to play again? \n" + " type any key and ENTER to continue...\n" + "\n" + " otherwise, type N\n");
             input = scanner.nextLine();
+            player.setBets(new ArrayList<>());
+            setBets(new ArrayList<>());
             if(input.equalsIgnoreCase("n")) loop = false;
         }while(loop);
 
@@ -196,6 +200,7 @@ public class Roulette extends Game{
                         this.betStraight(Integer.parseInt(inputs[1]));
                         player.setBets(this.getBets());
                         this.setAmountBet(player.placeBet(Integer.parseInt(inputs[2])));
+                        player.setBetType(Player.Choice.NUMBER);
                         didCommandWork = true;
                     }
                     break;
@@ -203,13 +208,14 @@ public class Roulette extends Game{
                     this.betEven();
                     player.setBets(this.getBets());
                     this.setAmountBet(player.placeBet(Integer.parseInt(inputs[1])));
-
+                    player.setBetType(Player.Choice.NUMBER);
                     didCommandWork = true;
                     break;
                 case ODD:
                     this.betOdd();
                     player.setBets(this.getBets());
                     this.setAmountBet(player.placeBet(Integer.parseInt(inputs[1])));
+                    player.setBetType(Player.Choice.NUMBER);
                     didCommandWork = true;
                     break;
                 case RED:
@@ -236,15 +242,4 @@ public class Roulette extends Game{
         }
         return didCommandWork;
     }
-
-
-    public static void main(String[] args) {
-        Roulette roulette = new Roulette();
-        Player randy = new Player("RandyDandy", 500);
-        roulette.engine(randy);
-    }
-
-
-
-
 }
