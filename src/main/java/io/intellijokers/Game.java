@@ -6,6 +6,7 @@ abstract class Game {
     private int amountBet = 0;
 
     UserInputHandler prompt = new UserInputHandler();
+    Dealer dealer = new Dealer();
 
     /**
      * Resets the bet back to zero.
