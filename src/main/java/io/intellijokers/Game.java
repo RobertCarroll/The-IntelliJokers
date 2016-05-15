@@ -44,26 +44,4 @@ abstract class Game {
         resetBet();
         player.setCash( player.getCash() + earnings);
     }
-
-
-    public void increaseBet(int amountBet) {
-        this.amountBet += amountBet;
-    }
-    /**
-     * Returns the current round, used primarily by Poker
-     * @return
-     */
-    public int getRound() {
-        return round;
-    }
-
-    public void setRound(int round) {
-        this.round = round;
-    }
-    /**
-     * Sets the current round, used to reset the count of the round.
-     */
-    public void resetRound() {
-        this.round = 0;
-    }
 }

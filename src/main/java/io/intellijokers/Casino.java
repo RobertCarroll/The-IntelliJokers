@@ -11,7 +11,7 @@ public class Casino {
     boolean running = true;
 
     Pattern blackjackPattern = Pattern.compile("(?i)b(l|1)(a|@)ckj(a|@)ck");
-    Pattern horseRacePattern = Pattern.compile("(?i)h(0|o)r($|s)(3|e)\\sr(@|a)c(i|1)ng");
+    Pattern horseRacePattern = Pattern.compile("(?i)h(0|o)r(\\$|s)(3|e)\\sr(@|a)c(i|1)ng");
     Pattern roulettePattern = Pattern.compile("(?i)r(0|o)u(l|1)(e|3)(t|7)(t|7)(e|3)");
     Pattern exitPattern = Pattern.compile("(?i)(e|3)(x|%)(1|i|!)(7|t)");
 

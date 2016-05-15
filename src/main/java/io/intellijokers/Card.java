@@ -27,16 +27,8 @@ public class Card {
         this.suit = suit;
     }
 
-    public Suits getSuit() {
-        return suit;
-    }
-
     public String getCardDisplay() {
         return cardDisplay;
-    }
-
-    public int getPokerRank() {
-        return pokerRank;
     }
 
     public int getBlackjackValue() {
