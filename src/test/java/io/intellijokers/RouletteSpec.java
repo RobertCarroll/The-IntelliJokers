@@ -21,8 +21,7 @@ public class RouletteSpec {
     @Before
 
     public void Sandbox() {
-        player = new Player("Sephiroth", 1500) {
-        };
+        player = new Player("Sephiroth");
         roly = new Roulette();
 
     }

@@ -2,11 +2,7 @@ package io.intellijokers;
 
 import java.util.Collections;
 
-/**
- * Created by alejandrolondono on 5/11/16.
- */
 public class Dealer extends User {
-    String name = "Dealer";
     private int nextCard = -1;
     private Deck deck;
 
@@ -21,7 +17,7 @@ public class Dealer extends User {
 
 
     public Dealer(){
-        super("dealer");
+        super("Dealer");
         deck = new Deck();
     }
 

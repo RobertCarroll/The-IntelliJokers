@@ -8,11 +8,16 @@ public class Horse {
 
     public Horse(int number){
         name = HorseNameGenerator.generateName();
-        maxSpeed = (int)( Math.random() * number + 1 );
+        maxSpeed = (int)( Math.random() * (number - 10) + 10 );
+        odds = 15 - maxSpeed;
     }
 
     public int getOdds(){
         return odds;
+    }
+
+    public void setOdds(int odds){
+        this.odds = odds;
     }
 
     public void setDistanceCovered(int distanceCovered){
@@ -31,6 +36,6 @@ public class Horse {
      * Unit testing random number generator?
      */
     public void ride(){
-        distanceCovered += (int) (Math.random()*maxSpeed+5);
+        distanceCovered += (int) (Math.random()*maxSpeed+1);
     }
 }

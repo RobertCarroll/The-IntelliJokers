@@ -22,7 +22,7 @@ public class DealerSpec {
         name = "Dandy Randy";
         dealer = new Dealer();
         deck = new Deck();
-        player = new Player(name, amount);
+        player = new Player(name);
 //        ai = new AI();
     }
 
