@@ -13,12 +13,9 @@ public class DealerSpec {
     Dealer dealer;
     Deck deck;
     Player player;
-//    AI ai;
     String name;
 
-
     int amount;
-
 
     @Before
     public void Sandbox(){

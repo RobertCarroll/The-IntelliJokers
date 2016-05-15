@@ -61,6 +61,7 @@ abstract class Game {
         player.setCash( player.getCash() + earnings);
     }
 
+
     public void increaseBet(int amountBet) {
         this.amountBet += amountBet;
     }
@@ -89,7 +90,4 @@ abstract class Game {
     public void setCurrentPlayers(Player player) {
         currentPlayers.add(player);
     }
-
-
-    //public abstract void determineWinner();
 }

@@ -1,6 +1,5 @@
 package io.intellijokers;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 /**
@@ -10,6 +9,16 @@ public class Dealer extends User {
     String name = "Dealer";
     private int nextCard = -1;
     private Deck deck;
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+
 
     public Dealer(){
         super("dealer");
@@ -21,7 +30,7 @@ public class Dealer extends User {
      * Takes in an array list of cards(deck) and shuffles it.
      */
     public void shuffleDeck(){
-        Collections.shuffle(deck.getDeck());
+        Collections.shuffle(deck.getCards());
     }
 
     /**
@@ -30,7 +39,11 @@ public class Dealer extends User {
      */
     public Card dealCard(){
         nextCard++;
-        return deck.getDeck().get(nextCard);
+        if(nextCard >= 46){
+            nextCard = 0;
+        }
+        return deck.getCards().get(nextCard);
+
     }
 
 

@@ -8,8 +8,7 @@ import java.util.ArrayList;
  * Created by alejandrolondono on 5/11/16.
  */
 public class Player extends User{
-
-    int cash = 0;
+    public int cash = 0;
 
     private ArrayList<Integer> bets= new ArrayList<>();
     private String betColor;
@@ -40,6 +39,7 @@ public class Player extends User{
     public void setBetColor(String betColor) {
         this.betColor = betColor;
     }
+
 
     public int getCash() {
         return cash;

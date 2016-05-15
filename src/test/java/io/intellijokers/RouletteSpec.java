@@ -1,11 +1,9 @@
 package io.intellijokers;
-import io.intellijokers.Player;
-import io.intellijokers.Roulette;
+
 
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -98,7 +96,6 @@ public class RouletteSpec {
     }
 
     @Test
-
     public void determineWinnerNumberTest(){
         roly.setWinningNumber();
         int winNum = roly.getWinningNumber();
@@ -109,7 +106,6 @@ public class RouletteSpec {
     }
 
     @Test
-
     public void determineWinnerColorTest(){
         roly.setWinningNumber();
         int winNum = roly.getWinningNumber();
