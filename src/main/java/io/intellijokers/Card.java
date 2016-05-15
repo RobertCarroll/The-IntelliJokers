@@ -20,6 +20,7 @@ public class Card {
         }
     }
 
+    
     public Card(String display, int pokerRank, int blackjackValue, Suits suit){
         cardDisplay = display;
         this.pokerRank = pokerRank;
