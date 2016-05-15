@@ -2,3 +2,4 @@
 *.iml
 target/*
 .DS_Store
+target/classes/io/intellijokers/Casino.class

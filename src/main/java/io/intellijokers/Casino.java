@@ -1,51 +1,40 @@
 package io.intellijokers;
 
-import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Casino {
+    UserInputHandler inputHandler = new UserInputHandler();
     HorseRace horseRace = new HorseRace();
     Blackjack blackjack = new Blackjack();
     Roulette roulette = new Roulette();
     Player player;
-    Scanner scanner = new Scanner(System.in);
+    boolean running = true;
 
-    public enum Game{ HORSERACE, BLACKJACK, ROULETTE, DEFAULT }
-    public void CLI(Player player, String input){
-        Game comm = Game.DEFAULT;
-        try{
-            int i = Game.valueOf(input.toUpperCase()).ordinal();
-            comm = Game.values()[i];
-        }catch (Exception e){
-            System.out.println("that game does not seem to be available \n maybe you did not spell it right");
-        }
-        switch(comm){
-            case BLACKJACK:
-                blackjack.run(player);
-                break;
-            case ROULETTE:
-                roulette.engine(player);
-                break;
-            case HORSERACE:
-                horseRace.startRace(player);
-                break;
-            default:
-                System.out.println("that is not a game that is available");
-                break;
+    Pattern blackjackPattern = Pattern.compile("(?i)b(l|1)(a|@)ckj(a|@)ck");
+    Pattern horseRacePattern = Pattern.compile("(?i)h(0|o)r($|s)(3|e)\\sr(@|a)c(i|1)ng");
+    Pattern roulettePattern = Pattern.compile("(?i)r(0|o)u(l|1)(e|3)(t|7)(t|7)(e|3)");
+    Pattern exitPattern = Pattern.compile("(?i)(e|3)(x|%)(1|i|!)(7|t)");
+
+    private void inputChecker(String input){
+        if(blackjackPattern.matcher(input).matches()){
+            blackjack.run(player);
+        }else if(horseRacePattern.matcher(input).matches()){
+            horseRace.startRace(player);
+        }else if(roulettePattern.matcher(input).matches()){
+            roulette.engine(player);
+        }else if(exitPattern.matcher(input).matches()) {
+            running = false;
+        }else{
+            System.out.println("We were unable to determine the game you wish to play.");
         }
     }
+
     public void enterCasino(){
-        boolean keepRunning = true;
-
-        System.out.printf("Welcome to the the IntelliJoker Casino! \n Enter a name:");
-        String name = scanner.next();
+        String name = inputHandler.promptTheUserForAString("Welcome to the the IntelliJoker Casino! \n What is your name?");
         player = new Player(name);
-
-        while(keepRunning){
-           System.out.println("which game would you like to play");
-           String input = scanner.nextLine();
-           CLI(player, input);
-           System.out.println("would you like to play another game? y/n");
-           if(scanner.nextLine().equalsIgnoreCase("n")) keepRunning = false;
+        while(running) {
+            String choice = inputHandler.promptTheUserForAString("We have Blackjack, Horse Racing and Roulette. \n What would you like to play?");
+            inputChecker(choice);
         }
     }
 
