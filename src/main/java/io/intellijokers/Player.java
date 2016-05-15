@@ -3,7 +3,7 @@ package io.intellijokers;
 import java.util.ArrayList;
 
 public class Player extends User{
-    public int cash = 0;
+    public int cash = 500;
 
     private ArrayList<Integer> bets= new ArrayList<>();
     private String betColor;
