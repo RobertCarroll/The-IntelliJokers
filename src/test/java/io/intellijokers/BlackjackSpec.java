@@ -17,7 +17,7 @@ public class BlackjackSpec {
     public void initiate() {
         blackjack = new Blackjack();
         dealer = new Dealer();
-        player = new Player("Chester Tester", 500);
+        player = new Player("Chester Tester");
     }
 
 
@@ -73,7 +73,7 @@ public class BlackjackSpec {
 
     @Test
     public void reduceAceValueTest(){
-        Player shaunJawn = new Player("Sean Jawn", 400000);
+        Player shaunJawn = new Player("Sean Jawn");
         Card ace = new Card(Card.Suits.SPADES.suitIcon, 14,11, Card.Suits.SPADES);
         shaunJawn.getHand().add(ace);
         blackjack.reduceAceValue(shaunJawn);
@@ -129,7 +129,7 @@ public class BlackjackSpec {
     @Test
     public void resetAceValueTest(){
         Dealer dealio = new Dealer();
-        Player earl = new Player("Earl Pearl",50);
+        Player earl = new Player("Earl Pearl");
         Card ace = new Card(Card.Suits.SPADES.suitIcon, 14,11, Card.Suits.SPADES);
         dealio.getDeck().getCards().add(ace);
         earl.getHand().add(ace);

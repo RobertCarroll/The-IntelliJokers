@@ -21,7 +21,7 @@ public class PlayerSpec {
 
         amount = 500;
         err = .01;
-        player = new Player(name, amount);
+        player = new Player(name);
         bets = new ArrayList(); //might need to add <>
         bets.add(1);
         bets.add(2);

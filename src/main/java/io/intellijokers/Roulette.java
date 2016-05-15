@@ -66,8 +66,6 @@ public class Roulette extends Game{
 
     private int winningNumber;
 
-    private Player player;
-
     ArrayList<Integer> bets = new ArrayList<>();
 
 // Sets a randomly generated winning number (0-36)

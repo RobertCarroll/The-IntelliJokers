@@ -3,12 +3,8 @@ package io.intellijokers;
 public class Blackjack extends CardGame{
 
 
-    Player player = new Player("Chester Tester", 500);
-    UserInputHandler prompt = new UserInputHandler();
-
-
+    private Player player;
     private int currentBet;
-
 
     /**
      * Takes in a user who wants to hit and adds a card to that user's hand.

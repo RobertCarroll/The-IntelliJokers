@@ -1,15 +1,12 @@
 package io.intellijokers;
 
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class HorseRace {
+public class HorseRace extends Game{
     private Horse[] horses = new Horse[10];
+    ArrayList<Horse> winningHorses;
     private Horse leadHorse;
 
     public void checkLead(){
@@ -18,7 +15,7 @@ public class HorseRace {
     }
 
     public int getMaxSpeed(){
-        return (int)(Math.random()*(20-10) + 10);
+        return (int)(Math.random()*(15-13) + 13);
     }
 
     public void loadHorses(){
@@ -31,9 +28,48 @@ public class HorseRace {
 
     /**
      * order is last to first
+     * and highest odds to lowest odds for adjust odds
      */
     public void getPositions(){
         Arrays.sort(horses, (o1, o2) -> o1.getDistanceCovered() - o2.getDistanceCovered());
+    }
+
+    public void adjustOdds(){
+        Arrays.sort(horses, (o1, o2) -> o1.getOdds() - o2.getOdds());
+
+        int oddsDifference = horses[0].getOdds() - 1;
+        for (int i = 0; i < horses.length; i++) {
+            horses[i].setOdds(horses[i].getOdds() - oddsDifference);
+        }
+    }
+
+    public void displayHorsesToBetOn(){
+        for (Horse horse:horses) {
+            System.out.println(horse.getName() + " odds: " + horse.getOdds());
+        }
+    }
+
+    public String getHorseName(){
+        return prompt.promptTheUserForAString("What horse do you think will win? Enter help for description of payouts.");
+    }
+
+    public boolean approveHorseName(String horseName){
+        for(Horse horse : horses){
+            if(horseName.equals(horse.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkForWinningBet(String horseName){
+        return horseName.equals(horses[9].getName());
+    }
+
+    public int getBet(){
+        int betAmount = prompt.promptTheUserForAnInteger("How much would you like to bet?");
+        currentPlayer.placeBet(betAmount);
+        return betAmount;
     }
 
     public void displayCurrentLeaders(String trackPosition){
@@ -43,23 +79,35 @@ public class HorseRace {
 
     public void displayWinningHorses(){
         getPositions();
-        System.out.println("1st: " + horses[9].getName() + "\n2nd: " + horses[8].getName() + "\n3rd: " + horses[7].getName());
+        System.out.println("1st: " + winningHorses.get(0).getName() + "\n2nd: " + winningHorses.get(1).getName() + "\n3rd: " + winningHorses.get(2).getName());
     }
 
     public void delayProgram(){
         try {
-            Thread.sleep(6000);
+            Thread.sleep(6500);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
 
+    public boolean checkArrayForInteger(Integer[] array, Integer horseIndex){
+        List<Integer> list = Arrays.asList(array);
+        return list.contains(horseIndex);
+    }
+
 
     public void completeRaceLeg(){
-        while(horses[7].getDistanceCovered() < 525){
-            for(Horse horse:horses){
-                horse.ride();
-                checkLead();
+        winningHorses = new ArrayList<>();
+        Integer[] finishedHorseIndex = new Integer[3];
+        int currentIndex = 0;
+        while(winningHorses.size() < 3){
+            for(int i = 0; i < horses.length; i++){
+                horses[i].ride();
+                if(horses[i].getDistanceCovered() > 500 && !checkArrayForInteger(finishedHorseIndex, i)){
+                    winningHorses.add(horses[i]);
+                    finishedHorseIndex[currentIndex] = i;
+                    currentIndex++;
+                }
             }
         }
 
@@ -78,29 +126,28 @@ public class HorseRace {
         delayProgram();
     }
 
-    public void playSong(){
-        String audioFile = "";
-        InputStream in = null;
-        AudioStream audioStream = null;
-        try {
-            in = new FileInputStream(audioFile);
-            audioStream = new AudioStream(in);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void startRace(Player player){
+        loadHorses();
+        adjustOdds();
+
+        displayHorsesToBetOn();
+        String horseName = getHorseName();
+        while( !approveHorseName(horseName) ) {
+            horseName = getHorseName();
         }
 
-        AudioPlayer.player.start(audioStream);
-    }
-
-    public void startRace(){
-        loadHorses();
-        //playSong();
+        setAmountBet(getBet());
 
         completeRaceLeg(100, "first turn");
         completeRaceLeg(150, "backstretch");
         completeRaceLeg(350, "second turn");
         completeRaceLeg(400, "homestretch");
         completeRaceLeg();
-    }
 
+        if(checkForWinningBet(horseName)){
+            player.setCash(player.getCash() + payOut(horses[9].getOdds()));
+        }else{
+            System.out.println("Thank you for your money.");
+        }
+    }
 }

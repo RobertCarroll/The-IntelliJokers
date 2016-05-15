@@ -1,6 +1,5 @@
 package io.intellijokers;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -29,7 +28,7 @@ public class Casino {
                 roulette.engine(player);
                 break;
             case HORSERACE:
-                horseRace.startRace();
+                horseRace.startRace(player);
                 break;
             default:
                 System.out.println("that is not a game that is available");
@@ -39,18 +38,16 @@ public class Casino {
     public void enterCasino(){
         boolean keepRunning = true;
 
-           System.out.printf("welcome to the the ZipCode Casino! \n Enter a name:");
-           String name = scanner.next();
-           System.out.println("Who much would you like to bet");
-           int money = scanner.nextInt();
-           scanner.nextLine();
-           player = new Player( name, money);
-        do{
+        System.out.printf("Welcome to the the IntelliJoker Casino! \n Enter a name:");
+        String name = scanner.next();
+        player = new Player(name);
+
+        while(keepRunning){
            System.out.println("which game would you like to play");
            String input = scanner.nextLine();
            CLI(player, input);
            System.out.println("would you like to play another game? y/n");
            if(scanner.nextLine().equalsIgnoreCase("n")) keepRunning = false;
-       }while(keepRunning);
+        }
     }
 }

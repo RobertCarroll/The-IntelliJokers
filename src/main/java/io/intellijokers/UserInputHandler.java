@@ -1,7 +1,5 @@
 package io.intellijokers;
-/**
- * Created by michaelcane on 5/11/16.
- */
+
 import java.util.Scanner;
 
 public class UserInputHandler {
