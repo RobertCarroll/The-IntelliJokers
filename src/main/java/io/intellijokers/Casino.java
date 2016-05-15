@@ -1,8 +1,6 @@
 package io.intellijokers;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by stevejaminson on 5/11/16.
@@ -13,6 +11,7 @@ public class Casino {
     Roulette roulette = new Roulette();
     Player player;
     Scanner scanner = new Scanner(System.in);
+
     public enum Game{ HORSERACE, BLACKJACK, ROULETTE, DEFAULT }
     public void CLI(Player player, String input){
         Game comm = Game.DEFAULT;
@@ -53,17 +52,5 @@ public class Casino {
         }
     }
 
-    public static void regexChecker (String theRegex, String strToCheck) {
 
-        Pattern checkRegex = Pattern.compile(theRegex);
-
-        Matcher regexMatcher = checkRegex.matcher(strToCheck);
-
-        while(regexMatcher.find()) {
-            if(regexMatcher.group().length() == 0) {
-                System.out.println("I'm sorry, you didn't enter anything in. Please specify your choice.");
-            }
-            //Enter the game method that we wish to call.
-        }
-    }
 }
