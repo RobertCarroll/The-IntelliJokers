@@ -7,7 +7,9 @@ import java.util.*;
  */
 public class Roulette extends Game{
 
-    // Initializing hashmap to create roulette table
+    /**
+     * Initializing hashmap to create roulette table
+     */
     Random rand = new Random();
     static HashMap<Integer, String> hashMap = new HashMap<>();
     public enum Command{
@@ -62,22 +64,26 @@ public class Roulette extends Game{
 
     }
 
-// Initializing fields
-
+    /**
+     * Initializing fields
+     */
     private int winningNumber;
 
     private Player player;
 
     ArrayList<Integer> bets = new ArrayList<>();
 
-// Sets a randomly generated winning number (0-36)
-
+    /**
+     * Sets a randomly generated winning number (0-36)
+     */
     public void setWinningNumber(){
         this.winningNumber =rand.nextInt(37);
     }
 
-// Returns the winning number
-
+    /**
+     * Returns the winning number
+     * @return
+     */
     public int getWinningNumber(){
         return winningNumber;
     }
@@ -90,30 +96,37 @@ public class Roulette extends Game{
         return bets;
     }
 
-// Stores a straight bet (single number)
-
+    /**
+     * Stores a straight bet (single number)
+     * @param number
+     */
     public void betStraight(int number){
         bets.add(number);
     }
 
-// Stores an even bet
-
+    /**
+     * Stores an even bet
+     */
     public void betEven(){
         for(int i=2; i <= 36; i= i+2){
             betStraight(i);
         }
     }
 
-// Stores an odd bet
-
+    /**
+     * Stores an odd bet
+     */
     public void betOdd(){
         for(int i=1; i <= 36; i= i+2){
             betStraight(i);
         }
     }
 
-// Stores a color bet
-
+    /**
+     * Stores a color bet
+     * @param player
+     * @param color
+     */
     public void betColor(Player player, String color){
             player.setBetColor(color);
     }

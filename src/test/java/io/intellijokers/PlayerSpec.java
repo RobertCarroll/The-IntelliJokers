@@ -13,7 +13,9 @@ public class PlayerSpec {
     String name;
     int amount;
     double err;
+    String betColor;
     ArrayList<Integer> bets;
+    Player.Choice betType;
 
 
     @Before
@@ -26,6 +28,22 @@ public class PlayerSpec {
         bets.add(1);
         bets.add(2);
         bets.add(3);
+        betColor = "Black";
+        betType = Player.Choice.NUMBER;
+    }
+
+    @Test
+    public void setBetTypeTest() {
+        player.setBetType(betType);
+        Player.Choice actualValue = player.getBetType();
+        assertEquals("Should output the type of bet set by the player", betType, actualValue);
+    }
+
+    @Test
+    public void setBetColorTest() {
+        player.setBetColor(betColor);
+        String actualValue = player.getBetColor();
+        assertEquals("Should output the color set by the player", betColor, actualValue);
     }
 
     @Test
