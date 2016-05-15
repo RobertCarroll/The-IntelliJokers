@@ -19,4 +19,5 @@ public class UserInputHandler {
     public void promptUser(String msg) {
         System.out.println(msg);
     }
+
 }

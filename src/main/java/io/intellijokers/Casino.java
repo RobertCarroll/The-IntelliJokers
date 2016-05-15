@@ -1,6 +1,8 @@
 package io.intellijokers;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by stevejaminson on 5/11/16.
@@ -48,6 +50,20 @@ public class Casino {
            CLI(player, input);
            System.out.println("would you like to play another game? y/n");
            if(scanner.nextLine().equalsIgnoreCase("n")) keepRunning = false;
+        }
+    }
+
+    public static void regexChecker (String theRegex, String strToCheck) {
+
+        Pattern checkRegex = Pattern.compile(theRegex);
+
+        Matcher regexMatcher = checkRegex.matcher(strToCheck);
+
+        while(regexMatcher.find()) {
+            if(regexMatcher.group().length() == 0) {
+                System.out.println("I'm sorry, you didn't enter anything in. Please specify your choice.");
+            }
+            //Enter the game method that we wish to call.
         }
     }
 }
