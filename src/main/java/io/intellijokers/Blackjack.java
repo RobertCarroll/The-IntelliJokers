@@ -1,9 +1,6 @@
 package io.intellijokers;
 
 public class Blackjack extends CardGame{
-
-
-    private Player player;
     private int currentBet;
 
     /**
@@ -27,7 +24,7 @@ public class Blackjack extends CardGame{
      * Doubles the bet and deals one card.
      * @return
      */
-    public void doubleDown(){
+    public void doubleDown(Player player){
         player.setCash(player.getCash()-currentBet);
         currentBet = currentBet *2;
         hit(player);
@@ -111,7 +108,7 @@ public class Blackjack extends CardGame{
      * Displays the scoreboard with both hands and totals.
      * @return
      */
-    public String displayScoreBoard(){
+    public String displayScoreBoard(Player player){
         String scoreboard = "";
         String bet = "Current Bet : $" + getCurrentBet() + "   Total Cash : $" + player.getCash() +"\n";
         scoreboard += bet + "\n" + "Dealer : " + displayHand(dealer) + "\n" +
@@ -165,11 +162,8 @@ public class Blackjack extends CardGame{
 
     /**
      * Pays the player based on the bet won.
-     * @param odds
-     * @param person
-     * @return
      */
-    public int payout(int odds, User person) {
+    public int payOut(int odds, Player player) {
         player.setCash(player.getCash() + getCurrentBet()*odds + getCurrentBet());
         int win = getCurrentBet()*odds + getCurrentBet();
         prompt.promptUser("\nYou won $" + win + "!\n");
@@ -177,7 +171,7 @@ public class Blackjack extends CardGame{
     }
 
 
-    public void run(){
+    public void run(Player player){
 
         boolean wantToPlay = true;
         while(wantToPlay) {
@@ -209,13 +203,13 @@ public class Blackjack extends CardGame{
 
             prompt.promptUser("Dealing...\n");
             delay();
-            prompt.promptUser(displayScoreBoard());
+            prompt.promptUser(displayScoreBoard(player));
             /**
              * Check to see if the player has blackjack.
              */
 
             if (evaluateHand(player) == 21 && evaluateHand(dealer) != 21) {
-                payout(2, player);
+                payOut(2, player);
                 blackjack = true;
             }
 
@@ -235,7 +229,7 @@ public class Blackjack extends CardGame{
                             reduceAceValue(player);
                         }
                         while (evaluateHand(player) < 21) {
-                            int nextMove = prompt.promptTheUserForAnInteger(displayScoreBoard()
+                            int nextMove = prompt.promptTheUserForAnInteger(displayScoreBoard(player)
                                     + "\nChoose an option: \n" +
                                     "1 : Hit\n" +
                                     "2 : Stay");
@@ -264,21 +258,21 @@ public class Blackjack extends CardGame{
 
                     case 3:
                         prompt.promptUser("You doubled-down!");
-                        doubleDown();
+                        doubleDown(player);
                         if (evaluateHand(player) > 21) {
                             reduceAceValue(player);
                         }
-                        displayScoreBoard();
+                        displayScoreBoard(player);
                         break;
 
                 }
 
                 if (bustCheck(player)) {
-                    prompt.promptUser(displayScoreBoard() + "\nYou busted.\n");
+                    prompt.promptUser(displayScoreBoard(player) + "\nYou busted.\n");
                     delay();
                     dealer.getHand().get(1).setCardDisplay(downCard);
                     dealer.getHand().get(1).setBlackjackValue(downNum);
-                    prompt.promptUser("Dealer had : \n\n" + displayScoreBoard() +
+                    prompt.promptUser("Dealer had : \n\n" + displayScoreBoard(player) +
                             "\nYou busted and lost $" + getCurrentBet() + "\n");
                     busted = true;
                 }
@@ -291,7 +285,7 @@ public class Blackjack extends CardGame{
                     prompt.promptUser("Dealer has : \n");
                     dealer.getHand().get(1).setCardDisplay(downCard);
                     dealer.getHand().get(1).setBlackjackValue(downNum);
-                    prompt.promptUser(displayScoreBoard());
+                    prompt.promptUser(displayScoreBoard(player));
                     delay();
                     delay();
 
@@ -305,7 +299,7 @@ public class Blackjack extends CardGame{
                         if (evaluateHand(dealer) > 21) {
                             reduceAceValue(dealer);
                         }
-                        prompt.promptUser(displayScoreBoard());
+                        prompt.promptUser(displayScoreBoard(player));
                         delay();
 
                     }
@@ -315,7 +309,7 @@ public class Blackjack extends CardGame{
                      */
                     if (evaluateHand(dealer) > 21) {
                         prompt.promptUser("Dealer busted!");
-                        payout(1, player);
+                        payOut(1, player);
                         delay();
                         busted = true;
                     } else {
@@ -328,7 +322,7 @@ public class Blackjack extends CardGame{
                     if (evaluateHand(dealer) <= 21) {
                         if (evaluateHand(player) > evaluateHand(dealer)) {
                             delay();
-                            payout(1, player);
+                            payOut(1, player);
                             delay();
                             busted = true;
                         }
@@ -341,7 +335,7 @@ public class Blackjack extends CardGame{
                         if (evaluateHand(player) == evaluateHand(dealer)) {
                             delay();
                             prompt.promptUser("\nPush.\n");
-                            payout(0, player);
+                            payOut(0, player);
                             delay();
                             busted = true;
                         }

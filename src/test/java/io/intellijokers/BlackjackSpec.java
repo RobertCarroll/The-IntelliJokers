@@ -40,7 +40,7 @@ public class BlackjackSpec {
     @Test
     public void doubleDownTest(){
         Blackjack blackjack = new Blackjack();
-        blackjack.doubleDown();
+        blackjack.doubleDown(player);
         int expected = 0;
         int actual = blackjack.getCurrentBet();
         assertEquals("Should return double the original wager",expected,actual);
@@ -98,7 +98,7 @@ public class BlackjackSpec {
         dealer.getHand().add(dealer.dealCard());
         dealer.getHand().add(dealer.dealCard());
         String expected = "Current Bet : $0   Total Cash : $500\n\nDealer :   0\n\nChester Tester :   0\n";
-        String actual = blackjack.displayScoreBoard();
+        String actual = blackjack.displayScoreBoard(player);
         assertEquals(expected,actual);
     }
 

@@ -146,6 +146,7 @@ public class HorseRace extends Game{
 
         if(checkForWinningBet(horseName)){
             player.setCash(player.getCash() + payOut(horses[9].getOdds()));
+            System.out.println("You now have: " + player.getCash());
         }else{
             System.out.println("Thank you for your money.");
         }

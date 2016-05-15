@@ -2,9 +2,6 @@ package io.intellijokers;
 
 import java.util.Scanner;
 
-/**
- * Created by stevejaminson on 5/11/16.
- */
 public class Casino {
     HorseRace horseRace = new HorseRace();
     Blackjack blackjack = new Blackjack();
@@ -23,7 +20,7 @@ public class Casino {
         }
         switch(comm){
             case BLACKJACK:
-                blackjack.run();
+                blackjack.run(player);
                 break;
             case ROULETTE:
                 roulette.engine(player);
