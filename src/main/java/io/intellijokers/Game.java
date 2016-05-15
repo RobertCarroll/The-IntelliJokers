@@ -1,21 +1,11 @@
 package io.intellijokers;
 
-/**
- * Created by michaelcane on 5/11/16.
- */
-import java.util.ArrayList;
-
 abstract class Game {
-
-    public ArrayList<Player> currentPlayers = new ArrayList<>();
-
-
-
-
+    public Player currentPlayer;
     private int round = 0;
-
-
     private int amountBet = 0;
+
+    UserInputHandler prompt = new UserInputHandler();
 
     /**
      * Resets the bet back to zero.
@@ -39,13 +29,7 @@ abstract class Game {
     public void setAmountBet(int amountBet) {
         this.amountBet = amountBet;
     }
-    /**
-     * This method is used by Black Jack, Horse Racing, and Roulette.
-     * It will have a slightly different int odds for each but the action
-     * is the same for each.
-     * @param odds
-     * @param player
-     */
+
     public int payOut(int odds) {
         return odds*getAmountBet();
     }
@@ -81,13 +65,5 @@ abstract class Game {
      */
     public void resetRound() {
         this.round = 0;
-    }
-
-    /**
-     * Used to add players to the currentPlayers ArrayList.
-     * @param player
-     */
-    public void setCurrentPlayers(Player player) {
-        currentPlayers.add(player);
     }
 }

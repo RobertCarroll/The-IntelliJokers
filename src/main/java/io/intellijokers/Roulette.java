@@ -69,8 +69,6 @@ public class Roulette extends Game{
      */
     private int winningNumber;
 
-    private Player player;
-
     ArrayList<Integer> bets = new ArrayList<>();
 
     /**

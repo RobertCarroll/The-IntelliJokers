@@ -1,14 +1,9 @@
 package io.intellijokers;
 
-
-
 import java.util.ArrayList;
 
-/**
- * Created by alejandrolondono on 5/11/16.
- */
 public class Player extends User{
-    public int cash = 0;
+    public int cash = 500;
 
     private ArrayList<Integer> bets= new ArrayList<>();
     private String betColor;
@@ -100,14 +95,8 @@ public class Player extends User{
         return placeBet(amount);
     }
 
-    /**
-     * This is a constructor for the User class.
-     * @param name
-     * @param money
-     */
-    public Player(String name, int money){
+    public Player(String name) {
         super(name);
-        this.setCash(money);
     }
 
 }
