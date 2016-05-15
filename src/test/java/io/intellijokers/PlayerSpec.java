@@ -77,5 +77,12 @@ public class PlayerSpec {
         assertEquals("bet int should be the same",expectedBet,actualBet);
     }
 
+    @Test
+    public void setGetBetTest(){
+        player.setBets(bets);
+        ArrayList<Integer> actualBets = player.getBets();
+        assertEquals("the bets passed should be returned.", bets, actualBets);
+    }
+
 }
 
