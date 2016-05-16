@@ -157,7 +157,7 @@ public class Roulette extends Game{
 //    public boolean askForInput(Player player, Scanner scanner, String input){
 //        input = scanner.nextLine();
 //        return CLI(player, input);
-//    }
+//   }
 
     public int printGameResults(Player player){
         setWinningNumber();
@@ -190,7 +190,7 @@ public class Roulette extends Game{
             String input = "";
             boolean commandWork = false;
             do{
-                input = scanner.next();
+                input = scanner.nextLine();
                 commandWork = CLI(player, input);
             }while(!commandWork);
            printGameResults(player);
