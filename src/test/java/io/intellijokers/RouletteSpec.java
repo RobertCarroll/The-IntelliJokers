@@ -3,6 +3,9 @@ package io.intellijokers;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -15,13 +18,16 @@ public class RouletteSpec {
     Player player;
     Roulette roly;
     int amount;
+    ArrayList<Integer> bets;
+    Scanner scanner;
 
     @Before
-
     public void Sandbox() {
         player = new Player("Sephiroth");
         roly = new Roulette();
         amount = 500;
+        roly.betEven();
+        scanner = new Scanner(System.in);
     }
 
     @Test
@@ -132,6 +138,13 @@ public class RouletteSpec {
         int expectedBet = amount+additionalBet;
         int actualBet = roly.getAmountBet();
         assertEquals("the bet amount should have increased to "+expectedBet,expectedBet,actualBet);
+    }
+    @Test
+    public void setBetsTest(){
+        ArrayList<Integer> expectedBets = new ArrayList<>();
+        roly.setBets(expectedBets);
+        ArrayList<Integer> actualBets = roly.getBets();
+        assertEquals("the bets returned should be empty",expectedBets,actualBets);
     }
 }
 
