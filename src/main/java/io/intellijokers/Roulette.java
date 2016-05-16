@@ -190,6 +190,7 @@ public class Roulette extends Game{
             String input = "";
             boolean commandWork = false;
             do{
+                input = scanner.next();
                 commandWork = CLI(player, input);
             }while(!commandWork);
            printGameResults(player);
