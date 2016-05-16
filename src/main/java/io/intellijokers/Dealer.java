@@ -10,17 +10,10 @@ public class Dealer extends User {
         return deck;
     }
 
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
-
-
-
     public Dealer(){
         super("Dealer");
         deck = new Deck();
     }
-
 
     /**
      * Takes in an array list of cards(deck) and shuffles it.

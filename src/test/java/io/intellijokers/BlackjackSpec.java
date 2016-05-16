@@ -1,4 +1,5 @@
 package io.intellijokers;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -91,16 +92,12 @@ public class BlackjackSpec {
         assertEquals(expected,actual);
     }
 
-    /*@Test
+    @Test
     public void displayScoreBoardTest(){
-        player.getHand().add(dealer.dealCard());
-        player.getHand().add(dealer.dealCard());
-        dealer.getHand().add(dealer.dealCard());
-        dealer.getHand().add(dealer.dealCard());
         String expected = "Current Bet : $0   Total Cash : $500\n\nDealer :   0\n\nChester Tester :   0\n";
         String actual = blackjack.displayScoreBoard(player);
-        assertTrue("The expected return is true.", expected.equals(actual));
-    }*/
+        assertEquals("The expected return is true.", expected, actual);
+    }
 
     @Test
     public void faceDownTest(){
@@ -139,5 +136,4 @@ public class BlackjackSpec {
         int actual = dealio.getDeck().getCards().get(dealio.getDeck().getCards().indexOf(ace)).getBlackjackValue();
         assertEquals("Hand total should be 85 after ace is reduced", expected, actual);
     }
-
 }

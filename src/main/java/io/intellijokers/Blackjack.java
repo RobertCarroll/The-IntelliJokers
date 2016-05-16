@@ -122,7 +122,7 @@ public class Blackjack extends Game{
      * Confirms user wants to continue playing.
      * @return
      */
-    private boolean wantToPlay() {
+    public boolean wantToPlay() {
         boolean wantToPlay = false;
         int again = userInputHandler.promptTheUserForAnInteger("Continue playing? " +
                 "\n1 : Yes\n2 : No");
