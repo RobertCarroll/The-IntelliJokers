@@ -138,11 +138,13 @@ public class HorseRace extends Game{
     }
 
     public void startRace(Player player){
+        currentPlayer = player;
         loadHorses();
         adjustOdds();
 
         displayHorsesToBetOn();
-        String horseName = getHorseName();
+        String horseName = null;
+        horseName = getHorseName();
         while( !approveHorseName(horseName) ) {
             horseName = getHorseName();
         }
