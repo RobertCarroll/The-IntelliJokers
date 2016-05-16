@@ -143,8 +143,8 @@ public class HorseRace extends Game{
         adjustOdds();
 
         displayHorsesToBetOn();
-        String horseName = null;
-        horseName = getHorseName();
+
+        String horseName = getHorseName();
         while( !approveHorseName(horseName) ) {
             horseName = getHorseName();
         }
@@ -159,9 +159,9 @@ public class HorseRace extends Game{
 
         if(checkForWinningBet(horseName)){
             player.setCash(player.getCash() + payOut(horses[9].getOdds()));
-            System.out.println("You now have: " + player.getCash());
+            System.out.println("You now have: " + player.getCash() + "\n");
         }else{
-            System.out.println("Thank you for your money.");
+            System.out.println("Thank you for your money.\n");
         }
     }
 }

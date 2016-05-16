@@ -30,10 +30,10 @@ public class Casino {
     }
 
     public void enterCasino(){
-        String name = inputHandler.promptTheUserForAString("Welcome to the the IntelliJoker Casino!\nWhat is your name?");
+        String name = inputHandler.promptTheUserForAString("Welcome to the the IntelliJoker Casino! You will be given $500 to bet with.\nWhat is your name?");
         player = new Player(name);
         while(running) {
-            String choice = inputHandler.promptTheUserForAString("You have been given $500 to bet with.\nWe have Blackjack, Horse Racing and Roulette.\nWhat would you like to play?");
+            String choice = inputHandler.promptTheUserForAString("We have Blackjack, Horse Racing and Roulette.\nWhat would you like to play?");
             inputChecker(choice);
         }
     }
