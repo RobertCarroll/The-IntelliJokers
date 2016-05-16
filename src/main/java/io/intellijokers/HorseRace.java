@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HorseRace extends Game{
+    UserInputHandler userInputHandler = new UserInputHandler();
     private Horse[] horses = new Horse[10];
     ArrayList<Horse> winningHorses;
     private Horse leadHorse;
@@ -50,7 +51,7 @@ public class HorseRace extends Game{
     }
 
     public String getHorseName(){
-        return prompt.promptTheUserForAString("What horse do you think will win? Enter help for description of payouts.");
+        return userInputHandler.promptTheUserForAString("What horse do you think will win? Enter help for description of payouts.");
     }
 
     public boolean approveHorseName(String horseName){
@@ -67,7 +68,7 @@ public class HorseRace extends Game{
     }
 
     public int getBet(){
-        int betAmount = prompt.promptTheUserForAnInteger("How much would you like to bet?");
+        int betAmount = userInputHandler.promptTheUserForAnInteger("How much would you like to bet?");
         currentPlayer.placeBet(betAmount);
         return betAmount;
     }

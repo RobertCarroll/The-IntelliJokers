@@ -10,6 +10,8 @@ public class HorseRaceSpec {
         race = new HorseRace();
     }
 
+
+
     @Test
     public void getMaxSpeedTest(){
         int actualValue = race.getMaxSpeed();
