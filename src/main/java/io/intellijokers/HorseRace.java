@@ -7,14 +7,21 @@ import java.util.List;
 public class HorseRace extends Game{
     UserInputHandler userInputHandler = new UserInputHandler();
     private Horse[] horses = new Horse[10];
-    ArrayList<Horse> winningHorses;
+    private ArrayList<Horse> winningHorses;
     private Horse leadHorse;
 
+    /**
+     * what does this do?
+     */
     public void checkLead(){
         getPositions();
         leadHorse = horses[9];
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxSpeed(){
         return (int)(Math.random()*(15-13) + 13);
     }

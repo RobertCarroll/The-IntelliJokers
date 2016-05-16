@@ -45,4 +45,8 @@ abstract class Game {
         resetBet();
         player.setCash( player.getCash() + earnings);
     }
+    
+    public void increaseBet(int amountBet) {
+        this.amountBet += amountBet;
+    }
 }

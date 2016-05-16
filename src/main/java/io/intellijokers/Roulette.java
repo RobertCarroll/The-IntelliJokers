@@ -154,6 +154,31 @@ public class Roulette extends Game{
         return playerWins;
     }
 
+//    public boolean askForInput(Player player, Scanner scanner, String input){
+//        input = scanner.nextLine();
+//        return CLI(player, input);
+//    }
+
+    public int printGameResults(Player player){
+        setWinningNumber();
+        if(determineWinner(player)){
+            System.out.println("\nYou Won! #gettingpunchedintheface");
+            player.setCash(player.getCash()+payOut());
+
+        }else{
+            System.out.println("Bad Luck!\n");
+        }
+        System.out.println("you now have "+player.getCash()+" in cash");
+        return player.getCash();
+    }
+
+    public ArrayList<Integer> resetGame(Player player){
+        ArrayList<Integer> clearBets = new ArrayList<>();
+        player.setBets(clearBets);
+        setBets(clearBets);
+        return clearBets;
+    }
+
     public void engine(Player player){
 
         Scanner scanner = new Scanner(System.in);
@@ -165,30 +190,15 @@ public class Roulette extends Game{
             String input = "";
             boolean commandWork = false;
             do{
-                player.setBets(null);
-                input = scanner.nextLine();
                 commandWork = CLI(player, input);
             }while(!commandWork);
-            String output = Arrays.asList(player.getBets()).toString();
-            System.out.println(player.getName()+" bet "+input+" on: \n"+output.substring(2,output.length()-2));
-            setWinningNumber();
-            if(determineWinner(player)){
-                System.out.println("\nYou Won! #gettingpunchedintheface");
-                player.setCash(player.getCash()+payOut());
+           printGameResults(player);
 
-            }else{
-                System.out.println("Bad Luck!\n");
-
-
-            }
-            System.out.println("you now have "+player.getCash()+" in cash");
             System.out.println("\nwould you like to play again? \n" + " type any key and ENTER to continue...\n" + "\n" + " otherwise, type N\n");
             input = scanner.nextLine();
-            player.setBets(new ArrayList<>());
-            setBets(new ArrayList<>());
+            resetGame(player);
             if(input.equalsIgnoreCase("n")) loop = false;
         }while(loop);
-
     }
 
     public boolean CLI(Player player, String input){
