@@ -204,7 +204,7 @@ public class Roulette extends Game{
 
     public boolean CLI(Player player, String input){
         boolean didCommandWork = false;
-        String[] inputs = input.split(" ");
+        String[] inputs = input.split("\\s");
         Command comm = Command.HELP;
         try {
             int i = Command.valueOf(inputs[0].toUpperCase()).ordinal();
@@ -217,7 +217,7 @@ public class Roulette extends Game{
             switch (comm) {
                 case STRAIGHT:
                     if(inputs.length < 3){
-                        System.out.println("try this command with a spaced with the number you want to bet on,\n and how much you want to bet");
+                        System.out.println("try this command with a spaced with the number you want to bet on,\nand how much you want to bet");
                     }else {
                         this.betStraight(Integer.parseInt(inputs[1]));
                         player.setBets(this.getBets());
@@ -258,7 +258,7 @@ public class Roulette extends Game{
             }
 
         }else if(inputs.length <= 1){
-            System.out.printf("Don't you want to bet some money? \n\n Try typing \n\n  EVEN 100 \n or \n straight 9 50\n");
+            System.out.printf("Don't you want to bet some money? \n\nTry typing \n\n EVEN 100 \nor\nstraight 9 50\n");
         }else{
             System.out.println("that is too many arguments");
         }
