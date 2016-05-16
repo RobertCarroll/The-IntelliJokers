@@ -6,12 +6,16 @@ import java.util.List;
 
 public class HorseRace extends Game{
     private Horse[] horses = new Horse[10];
-    ArrayList<Horse> winningHorses;
+    private ArrayList<Horse> winningHorses;
     private Horse leadHorse;
 
     public void checkLead(){
-        getPositions();
+        adjustPositions();
         leadHorse = horses[9];
+    }
+
+    public Horse getHorseAtIndex(int index){
+        return horses[index];
     }
 
     public int getMaxSpeed(){
@@ -30,14 +34,14 @@ public class HorseRace extends Game{
      * order is last to first
      * and highest odds to lowest odds for adjust odds
      */
-    public void getPositions(){
+    public void adjustPositions(){
         Arrays.sort(horses, (o1, o2) -> o1.getDistanceCovered() - o2.getDistanceCovered());
     }
 
     public void adjustOdds(){
         Arrays.sort(horses, (o1, o2) -> o1.getOdds() - o2.getOdds());
 
-        int oddsDifference = horses[0].getOdds() - 1;
+        int oddsDifference = horses[0].getOdds() - 2;
         for (int i = 0; i < horses.length; i++) {
             horses[i].setOdds(horses[i].getOdds() - oddsDifference);
         }
@@ -59,6 +63,11 @@ public class HorseRace extends Game{
                 return true;
             }
         }
+        if(horseName.equals("help") | horseName.equals("Help")){
+            System.out.println("With the odds of 2, you double your money.\nWith the odds of 3, your bet triples and so on...\n");
+        }else{
+            System.out.println("We could not match that horse name.\n");
+        }
         return false;
     }
 
@@ -67,24 +76,24 @@ public class HorseRace extends Game{
     }
 
     public int getBet(){
-        int betAmount = prompt.promptTheUserForAnInteger("How much would you like to bet?");
+        int betAmount = prompt.promptTheUserForAnInteger("How much would you like to bet? Your current balance is $" + currentPlayer.getCash());
         currentPlayer.placeBet(betAmount);
         return betAmount;
     }
 
     public void displayCurrentLeaders(String trackPosition){
-        getPositions();
+        adjustPositions();
         System.out.println(horses[9].getName() + " is leading going into the "+ trackPosition +", followed by " + horses[8].getName() + " and " + horses[7].getName() + "!");
     }
 
     public void displayWinningHorses(){
-        getPositions();
-        System.out.println("1st: " + winningHorses.get(0).getName() + "\n2nd: " + winningHorses.get(1).getName() + "\n3rd: " + winningHorses.get(2).getName());
+        adjustPositions();
+        System.out.println("1st: " + winningHorses.get(0).getName() + "\n2nd: " + winningHorses.get(1).getName() + "\n3rd: " + winningHorses.get(2).getName() +"\n");
     }
 
     public void delayProgram(){
         try {
-            Thread.sleep(6500);
+            Thread.sleep(500);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -106,7 +115,11 @@ public class HorseRace extends Game{
                 if(horses[i].getDistanceCovered() > 500 && !checkArrayForInteger(finishedHorseIndex, i)){
                     winningHorses.add(horses[i]);
                     finishedHorseIndex[currentIndex] = i;
-                    currentIndex++;
+                    if(currentIndex == 2){
+                        break;
+                    }else{
+                        currentIndex++;
+                    }
                 }
             }
         }
@@ -127,6 +140,7 @@ public class HorseRace extends Game{
     }
 
     public void startRace(Player player){
+        currentPlayer = player;
         loadHorses();
         adjustOdds();
 
@@ -145,10 +159,10 @@ public class HorseRace extends Game{
         completeRaceLeg();
 
         if(checkForWinningBet(horseName)){
-            player.setCash(player.getCash() + payOut(horses[9].getOdds()));
-            System.out.println("You now have: " + player.getCash());
+            currentPlayer.setCash(player.getCash() + payOut(horses[9].getOdds()));
+            System.out.println("Congratulations! You now have: " + player.getCash() + "\n");
         }else{
-            System.out.println("Thank you for your money.");
+            System.out.println("Thank you for your money. You now have $" + currentPlayer.getCash() + "\n");
         }
     }
 }
