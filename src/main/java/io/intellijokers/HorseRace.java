@@ -10,8 +10,12 @@ public class HorseRace extends Game{
     private ArrayList<Horse> winningHorses;
     private Horse leadHorse;
 
+    public Horse getHorseAtIndex(int index){
+        return horses[index];
+    }
+
     /**
-     * what does this do?
+     * sort the horses by distance and set the lead horse
      */
     public void checkLead(){
         getPositions();
@@ -19,8 +23,7 @@ public class HorseRace extends Game{
     }
 
     /**
-     *
-     * @return
+     * get the maximum speed for horse creation
      */
     public int getMaxSpeed(){
         return (int)(Math.random()*(15-13) + 13);
