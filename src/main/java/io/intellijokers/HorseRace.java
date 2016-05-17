@@ -48,7 +48,7 @@ public class HorseRace extends Game{
     public void adjustOdds(){
         Arrays.sort(horses, (o1, o2) -> o1.getOdds() - o2.getOdds());
 
-        int oddsDifference = horses[0].getOdds() - 1;
+        int oddsDifference = horses[0].getOdds() - 2;
         for (int i = 0; i < horses.length; i++) {
             horses[i].setOdds(horses[i].getOdds() - oddsDifference);
         }
